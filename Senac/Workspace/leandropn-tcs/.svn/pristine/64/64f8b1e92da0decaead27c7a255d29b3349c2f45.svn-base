@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<link rel="stylesheet" href="css/atividade-3-3.css">
+			<title>Aula 03</title>
+			<title>Aula 02</title>
+		</head>
+		<body>
+			<div id="div1">Dimensionado pelo borde-box</div>
+			<div id="div2">Dimensionado pelo content-box</div>
+		</body>
+	</html>

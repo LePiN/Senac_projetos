@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			thead{
+				background-color: gray;
+			}
+		</style>
+		<title>Atividade 03</title>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<td>Disciplina </td>
+				<td>Aluno </td>
+				<td>Nota </td>
+			</thead>
+			<tr>
+				<td rowspan="2"> Matemática</td>
+				<td>Aluno 01</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>Aluno 02</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td colspan ="2">Média</td>
+				<td>6,5</td>
+			</tr>
+		</table>
+	</body>
+</html>

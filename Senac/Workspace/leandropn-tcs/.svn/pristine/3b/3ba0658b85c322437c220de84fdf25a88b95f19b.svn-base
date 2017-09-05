@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Compiled and minified CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+		<!-- Compiled and minified JavaScript -->
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+		<title>Cadastro notas</title>
+	</head>
+	<body>
+		<header class="card-panel white-text blue darken-4 col s12 ">
+			<h3 align="center">REGISTRO NOTAS</h3>
+		</header>
+			
+			<form action="" method="post" class="col s12">
+				<div class="card-panel blue darken-2 col s6" title="Dados aluno">
+					
+					<div>
+						<h5 class="white-text">Dados aluno</h5>
+					</div>
+					
+					<div class="row">
+					
+						<div class="input-field col s6">
+							<input type="text" id="nome" name="txnome" class="validate">
+							<label class="active white-text" for="nome">Nome: </label>							
+						</div>
+						
+						<div class="input-field col s6">
+							<label class="active white-text" for="sobrenome">Sobrenome: </label>
+							<input type="text" id="sobrenome" name="txsobrenome">
+						</div>
+						
+					</div>
+					
+					<div class="row">
+						
+						<div class="input-field col s6">
+							<label class="active white-text" for="matricula">Matrícula: </label>
+							<input type="text" id="matricula" name="txmatricula">
+						</div>
+						
+						<div class="col s6">
+							
+							<label class="active white-text" for="sexo">Sexo:</label>
+							<div id="sexo">
+								<input class="with-gap" type="radio" name="rbsexo" value="Masculino" id="sexoM"/>
+								<label class="white-text" for="sexoM">Masculino</label>
+												
+								<input class="with-gap" type="radio" name="rbsexo" value="Feminino" id="sexoF"/>
+								<label class="white-text" for="sexoF">Feminino</label>
+							</div>
+						</div>
+						
+					</div>
+										
+				</div>
+				
+				<div class="card-panel blue">
+					
+					<h5 class="white-text">Notas</h5>
+					
+					<div class="col s3">
+					
+						<div class="input-field col s3">
+							<label class="active white-text" for="prova1">Prova 01: </label>
+							<input type="number" id="prova1" name="prova01">
+						</div>
+						
+						<div class="input-field col s3">
+							<label class="active white-text" for="prova2">Prova 02: </label>
+							<input type="number" id="prova2" name="prova02">
+						</div>
+												
+						<div class="input-field col s3">
+							<label class="active white-text" for="prova3">Prova 03: </label>
+							<input type="number" id="prova3" name="prova03">
+						</div>
+						
+					
+					</div>
+				
+				</div>
+				
+				<div class="card-panel blue lighten-2 row">
+					
+					<div align="center" class="col s6">
+						<button class="btn waves-effect waves-light blue-grey darken-4" type="submit">Enviar</button>
+					</div>
+					<div align="center" class="col s6">
+						<button class="btn waves-effect waves-light blue-grey" type="reset">Limpar</button>
+					</div>
+					
+				</div>
+				
+				<div align="center" class="card-panel blue darken-4">
+					<img class="responsive-img" src="https://s-media-cache-ak0.pinimg.com/originals/22/e2/21/22e221cd7f2e208aa2f08a550ef81471.gif"/>
+				</div>
+				
+			</form>
+		
+	</body>
+</html>

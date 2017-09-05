@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Indie+Flower" />
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Chewy" />
+		<title>Exercicio 02</title>
+	</head>
+	<body background="http://imagens.mdig.com.br/ilusoes/ilusoes_gifs_animadas_45.gif">
+		<header style="background-color:gray"> <h1 style="font-family:Indie Flower;color:red"> CLASSICOS NACIONAIS </h1></header>
+		<section> 
+			<h2 style="font-family:Chewy; color:green">Poema nacional</h2>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/GDKMnOiqruE"></iframe>
+			<p style="color:white">Poesia emblemática de um autor desconhecido, prêmio Jabuti de 2001
+		</section>
+		<footer style="background-color:purple"><h3 style="color:yellow">Leandro Pieper Nunes</h3></footer>	
+	</body>	
+</html>

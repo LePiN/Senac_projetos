@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+#cabecalho{
+	background-color: green;
+	color:white;
+	text-align: center;
+	padding:10px;
+}
+
+#especificacoes{
+	width:45%;
+	height:150px;
+	background-color: red;	
+	padding: 20px;
+	margin:10px;
+	float:left;
+}
+
+#aparencia{
+	width:45%;
+	height:150px;
+	background-color: pink;
+	padding: 20px;
+	margin:10px;
+	float:right;
+}
+
+#submissao{
+	background-color: blue;
+	border:black 5px solid;
+	padding:10px;
+	margin:10px;
+	clear:both;
+}
+
+#rodape{
+	background-color: yellow;
+	text-align:right;
+}

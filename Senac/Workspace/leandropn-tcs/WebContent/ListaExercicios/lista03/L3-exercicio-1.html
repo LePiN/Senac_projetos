@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Lista 3 - Exercício 1</title>
+		</head>
+		<body>
+			<form action="/leandropn-tcs/cadastroCarro" method="post">
+				<fieldset>
+					<legend> Especificações</legend>
+					<label>Marca:</label>
+					<input type="radio" name="caracteristica" value="audi"/> Audi
+					<input type="radio" name="caracteristica" value="fiat"/> Fiat
+					<input type="radio" name="caracteristica" value="ford"/> Ford
+					
+					<br>
+					
+					<label>Modelo:</label>
+					<input type="text" name="caracteristica"/>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset legend="Aparência">	
+					
+					<label>Cor:</label>
+					<legend>Aparência</legend>
+					<select name="caracteristica">
+						<option value="vermelho">Vermelho</option>
+						<option value="prata">Prata</option>
+						<option value="preto">Preto</option>
+						<option value="branco">Branco</option>
+					</select>
+				</fieldset>
+				
+				<br>
+				
+				<input type="submit" value="Salvar"/>
+			</form>
+		</body>
+	</html>

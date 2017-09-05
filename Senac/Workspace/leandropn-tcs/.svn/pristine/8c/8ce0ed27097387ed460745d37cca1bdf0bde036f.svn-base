@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<title>Aula 05</title>
+		</head>
+		<body>
+			<div id="cabecalho" class="page-header label-success">
+			<h1>FORMULÁRIO<small>Cadastro de Veículos</small></h1>
+			</div>
+			<br>
+			<form action="">
+				<div id="especificacoes" class="panel panel-warning">
+					<div class="panel-heading">
+						Especificações
+					</div>	
+					<div class="panel-body form-group">
+						<div class="form-group">
+							<label class="control-label">Marca:</label>
+							<label class="radio">
+								<input type="radio" name="marca" value="audi" id="radio1"/> Audi
+							</label>
+							<label class="radio">
+								<input type="radio" name="marca" value="fiat" id="radio2"/>Fiat
+							</label>
+							<label class="radio">
+								<input type="radio" name="marca" value="ford" id="radio3"/>Ford
+							</label>
+						</div>
+																		
+					
+					<br>
+					<div>
+						<label>Modelo:</label>
+						<input type="text" name="modelo"/>
+					</div>
+					</div>
+				</div>
+			
+											
+				<div id="aparencia">	
+					<h3>Aparência</h3>
+					<label>Cor:</label>
+					<select name="cor">
+						<option value="vermelho">Vermelho</option>
+						<option value="prata">Prata</option>
+						<option value="preto">Preto</option>
+						<option value="branco">Branco</option>
+					</select>
+				</div>
+				
+				<br>
+				
+				<div id="submissao">
+					<input type="submit" value="Salvar"/>
+				</div>
+				
+				<br>
+				
+			</form>
+			<div id="rodape">Leandro Pieper / lpiepernunes@gmail.com</div>
+		</body>
+	</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Aula 02</title>
+		</head>
+		<body>
+			<form action="/leandropn-tcs/cadastroCarro" method="post">
+				<fieldset>
+					<legend> Especificações</legend>
+					<label>Marca:</label>
+					<input type="radio" name="marca" value="audi"/> Audi
+					<input type="radio" name="marca" value="fiat"/> Fiat
+					<input type="radio" name="marca" value="ford"/> Ford
+					
+					<br>
+					
+					<label>Modelo:</label>
+					<input type="text" name="modelo"/>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset legend="Aparência">	
+					
+					<label>Cor:</label>
+					<legend>Aparência</legend>
+					<select name="cor">
+						<option value="vermelho">Vermelho</option>
+						<option value="prata">Prata</option>
+						<option value="preto">Preto</option>
+						<option value="branco">Branco</option>
+					</select>
+				</fieldset>
+				
+				<br>
+				
+				<input type="submit" value="Salvar"/>
+			</form>
+		</body>
+	</html>

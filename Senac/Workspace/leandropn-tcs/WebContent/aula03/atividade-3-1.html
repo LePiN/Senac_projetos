@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<link rel="stylesheet" href="css/atividade-3-1.css">
+			<title>Aula 03</title>
+		</head>
+		<body>
+			<form action="">
+				<fieldset>
+					<legend> Especificações</legend>
+					<label>Marca:</label>
+					<div id="dvmarca">
+						<input type="radio" name="marca" value="audi"/> Audi
+						<input type="radio" name="marca" value="fiat"/> Fiat
+						<input type="radio" name="marca" value="ford"/> Ford
+					</div>
+					<br>
+					
+					<label>Modelo:</label>
+					<input type="text" name="modelo" id="txmodelo" required/>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset legend="Aparência">	
+					
+					<label>Cor:</label>
+					<legend>Aparência</legend>
+					<select name="cor">
+						<option value="vermelho">Vermelho</option>
+						<option value="prata">Prata</option>
+						<option value="preto">Preto</option>
+						<option value="branco">Branco</option>
+					</select>
+				</fieldset>
+				
+				<br>
+				
+				<input type="submit" value="Salvar" id="btsalvar"/>
+			</form>
+		</body>
+	</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Atividade-6-1</title>
+	</head>
+	<body>
+		<form action="/Atividade_6_1" method="GET">
+			<button type="submit">Conectar ao Banco de Dados</button>
+		</form>
+	</body>
+</html>

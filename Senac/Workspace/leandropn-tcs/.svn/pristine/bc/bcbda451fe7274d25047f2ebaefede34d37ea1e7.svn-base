@@ -1,0 +1,22 @@
+-- DROP DATABASE veiculosBD;
+
+-- CREATE DATABASE veiculosBD;
+
+USE veiculosBD;
+
+CREATE TABLE MONTADORA (
+	id_montadora int (4) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome varchar (255),
+    pais varchar (255)
+);
+
+CREATE TABLE VEICULO (
+	id_veiculo int (4) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_montadora int (4),
+	modelo varchar (255),
+    ano int (4),
+    valor double,
+    constraint fk_montadora
+		foreign key (id_montadora) references MONTADORA (id_montadora)
+    
+    );

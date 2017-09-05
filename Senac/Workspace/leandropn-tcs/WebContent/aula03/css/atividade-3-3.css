@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#div1{
+	box-sizing:border-box;
+	background-color: red;	
+	padding:20px;
+	border:20px black solid;
+	width:200px;
+}
+
+#div2{
+	box-sizing:content-box;
+	background-color: blue;
+	padding:20px;
+	border:20px black solid;
+	width:200px;
+}
