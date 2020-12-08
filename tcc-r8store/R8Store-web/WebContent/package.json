@@ -1,0 +1,14 @@
+{
+  "name": "tcs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "r8",
+  "license": "ISC",
+  "dependencies": {
+    "angular-google-map": "0.0.2"
+  }
+}

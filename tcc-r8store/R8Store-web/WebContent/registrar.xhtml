@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>R8Store</title>
+</h:head>
+
+<h:body styleClass="login-body">
+
+	<div id="login-wrapper">
+
+		<div id="login-container">
+			<span class="title">Criar conta</span>
+			<h:form>
+				<div class="ui-g ui-fluid form-login">
+					<div class="ui-g-12">
+						<p:inputText id="username" styleClass="input-login"
+							value="#{personController.user.login}" required="true"
+							placeholder="Nome do usuário" />
+					</div>
+					<div class="ui-g-12">
+						<p:inputText id="name" styleClass="input-login"
+							value="#{personController.person.name}" required="true"
+							placeholder="Seu nome" />
+					</div>
+					<div class="ui-g-12">
+						<p:password id="password" styleClass="input-login"
+							value="#{personController.user.password}" required="true"
+							placeholder="Senha" feedback="false" />
+					</div>
+					<div class="ui-g-12">
+						<p:password id="confPassword" styleClass="input-login"
+							value="#{personController.confPassword}" required="true"
+							placeholder="Confirme sua senha" feedback="false" />
+					</div>
+					<div class="ui-g-12">
+						<p:inputText id="email" styleClass="input-login"
+							value="#{personController.person.email}" required="true"
+							placeholder="Email" />
+					</div>
+					<div class="ui-g-12">
+						<p:inputMask placeholder="Telefone" required="true"
+							value="#{personController.person.tel}" mask="(99) 9999-9999"
+							styleClass="input-login" />
+					</div>
+
+					<div class="ui-g-12">
+						<p:selectOneMenu id="gender"
+							styleClass="input-login inputs-select"
+							value="#{personController.person.gender}" required="true"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Sexo" noSelectionOption="true" />
+							<f:selectItems value="#{employeeController.genders()}"
+								var="entity" itemLabel="#{entity.name}" itemValue="#{entity}" />
+						</p:selectOneMenu>
+					</div>
+					<div class="ui-g-12">
+						<p:calendar placeholder="Data de Nascimento" 
+							styleClass="input-login-calendario" navigator="true" yearRange="c-100:c+0"
+							value="#{personController.person.birthday}" required="true" />
+					</div>
+					<div class="ui-g-12">
+						<p:commandButton styleClass="btn-login" value="Registrar"
+							actionListener="#{personController.registerAction()}"
+							ajax="false" />
+					</div>
+
+					<div class="ui-g-12">
+						<a class="link-login" href="login.xhtml">Ja tenho uma conta</a>
+					</div>
+				</div>
+			</h:form>
+		</div>
+		<div class="login-footer">
+			<a href="index.xhtml">Voltar</a>
+		</div>
+	</div>
+
+	<h:outputStylesheet name="css/layout.css" library="omega-layout" />
+	<h:outputStylesheet name="css/style-layout.css" library="omega-layout" />
+</h:body>
+
+</html>

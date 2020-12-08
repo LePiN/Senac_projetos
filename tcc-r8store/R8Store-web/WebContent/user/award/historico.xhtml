@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="content">
+
+		<div ng-controller="HistoryAwardController">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Historico</h1>
+			</div>
+
+			<!-- card pontos shopping -->
+			<div class="ui-g-12">
+				<div class="card card-tipo1 historico-premio">
+					<div class="header-card">
+						<div class="ui-g">
+							<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+								<h2>Prêmios</h2>
+							</div>
+						</div>
+					</div>
+					<!-- /.header-card -->
+					<div class="body-card">
+
+						<div class="ui-g">
+
+							<!-- mini-card -->
+							<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6 ng-cloak" ng-repeat="history in awards">
+								<div class="card mini-card-tipo4">
+									<div id="" class="body-card">
+										<div class="ui-g">
+											<div class="ui-g-4 div-img">
+												<div class="img"
+													style="background-image: url('#{request.contextPath}/Image/Award/{{ history.award.id }}/imagemPrincipal');">
+												</div>
+											</div>
+											<div class="ui-g-8 div-info">
+												<div class="txt-info">
+													<h3>{{ history.award.name }}</h3>
+													<div>
+														<p>{{ history.award.description }}</p>
+													</div>
+												</div>
+											</div>
+
+											<div class="ui-g-12 footer-mini-card">
+												<div class="ui-g-3 ui-sm-6 pontos">
+													<label>Pontos:</label><br /> <span>{{ history.award.points }}</span><span> pts</span>
+												</div>
+												<div class="ui-g-3 ui-sm-6 data">
+													<label>Obtido em:</label><br /> <span>{{ history.award.date| date:'dd/MM/yy' }}</span>
+												</div>
+												<div class="ui-g-4 ui-sm-6 codigo">
+													<label>Codigo:</label><br /> <span>{{ history.code }}</span>
+												</div>
+												<div class="ui-g-2 ui-sm-6 center stats status1" ng-if="history.finalized == true">
+													<span>Resgatado</span>
+												</div>
+												<div class="ui-g-2 ui-sm-6 center stats status2" ng-if="history.finalized == false">
+													<span>Em aberto</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /.body-card -->
+								</div>
+							</div>
+							<!-- /.mini-card -->
+
+						</div>
+						<!-- /.ui-g -->
+
+					</div>
+					<!-- /.body-card -->
+				</div>
+			</div>
+			<!-- /.card pontos shopping -->
+		</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

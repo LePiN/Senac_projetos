@@ -1,0 +1,178 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{productController.showProduct}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div ng-controller="ProductController">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h1 class="titulo-pagina">Detalhe do Produto</h1>
+				</div>
+
+				<!-- card detalhe ofertas-->
+				<div class="ui-g-12">
+					<div class="card card-tipo1 detalhe-card detalhe-produto">
+
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-3 ui-sm-12 div-img">
+									<div class="img"
+										style="background-image: url('#{request.contextPath}/Image/Product/#{productController.product.id}/imagemPrincipal');"></div>
+								</div>
+								<div class="ui-g-9 ui-sm-12">
+									<div class="ui-g-12 titulo">
+										<h2>#{productController.product.name}</h2>
+									</div>
+									<div class="ui-g-12 info-pontos">
+
+										<ui:fragment
+											rendered="#{productController.product.offer == null}">
+											<div class="ui-g-4 ui-sm-12 preco">
+												<label>Preço:</label><br /> <span>R$
+													#{productController.product.value}</span>
+											</div>
+										</ui:fragment>
+
+										<ui:fragment
+											rendered="#{productController.product.offer != null}">
+
+											<div class="ui-g-3 ui-sm-12 desconto">
+												<label>Desconto de:</label> <br /> <span>#{productController.product.offer.discount}%</span>
+											</div>
+											<div class="ui-g-3 ui-sm-6 preco-de">
+												<label>De:</label><br /> <span>R$
+													#{productController.product.value}</span>
+											</div>
+											<div class="ui-g-3 ui-sm-6 preco-por">
+												<label>Por:</label><br /> <span>R$ <h:outputText
+														value="#{productController.product.value -
+													(productController.product.value/100) *
+													productController.product.offer.discount}">
+														<f:convertNumber pattern="#0.00" locale="pt_BR" />
+													</h:outputText>
+												</span>
+											</div>
+
+										</ui:fragment>
+									</div>
+									<div class="ui-g-12 descricao">
+										<label>Descrição do produto:</label>
+										<p>#{productController.product.description}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="ui-g">
+								<div class="ui-g-10 ui-sm-12 info-loja center-v">
+									<div class="loja">
+										<label>Loja:</label> <span>#{productController.product.store.name}</span>
+									</div>
+									<div class="local">
+										<label>Local:</label> <span>#{productController.product.store.localAddress}</span>
+									</div>
+								</div>
+								<a class="ui-g-2 ui-sm-12 btn-link center"
+									href="#{request.contextPath}/user/store/loja.xhtml?id=#{productController.product.store.id}"
+									target="_self"> <i class="fa fa-shopping-bag"
+									aria-hidden="true"></i> Visitar loja
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.card detalhe ofertas-->
+
+				<div class="ui-g-12">
+					<h2 class="titulo-pagina">
+						<i class="fa fa-shopping-bag" aria-hidden="true"></i> Mais
+						produtos relacionados
+					</h2>
+				</div>
+
+				<!-- lista-horizontal relacionados -->
+				<div class="ui-g-12">
+					<div class="lista-horizontal">
+						<div class="body-card">
+
+							<div class="mini-card-vertical ng-cloak"
+								ng-repeat="product in products">
+								<div class="div-img">
+									<div class="img"
+										style="background-image: url('#{request.contextPath}/Image/Product/{{ product.id }}/imagemPrincipal');">
+									</div>
+								</div>
+								<div class="card-block">
+									<h4 class="card-title">{{ product.name }}</h4>
+									<div class="card-text">
+										<div class="ui-g">
+											<div class="ui-g-12 descricao">
+												<label>Descrição: </label>
+												<p>{{ product.description }}</p>
+											</div>
+
+											<!-- QUANDO SEM DESCONTO -->
+											<div class="box-ng-if" ng-if="product.offer == null">
+												<div class="ui-g-7 plus-info">
+													<label>Preço:</label><br /> <span>R$ {{
+														product.value | number: 2 }}</span>
+												</div>
+											</div>
+											<!-- QUANDO SEM DESCONTO -->
+
+											<!-- QUANDO COM DESCONTO -->
+											<div class="box-ng-if" ng-if="product.offer != null">
+												<div class="ui-g-8 plus-info">
+													<label>Preço:</label><br />
+													<div class="preco-de">
+														<span>De:</span> <span>R$</span><span>{{
+															product.value | number: 2 }}</span>
+													</div>
+													<div class="preco-por">
+														<span>Por:</span> <span>R$</span><span>{{
+															product.value - ((product.value/100) *
+															product.offer.discount) | number: 2 }}</span>
+													</div>
+												</div>
+												<div class="ui-g-4 plus-info">
+													<label>Desconto:</label><br /> <span
+														class="desconto center-h">{{ product.offer.discount
+														}}%</span>
+												</div>
+											</div>
+											<!-- QUANDO COM DESCONTO -->
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="ui-g">
+										<a class="btn-link ui-g-12 center"
+											href="#{request.contextPath}/user/store/produto.xhtml?id={{ product.id }}"
+											target="_self"> <i class="fa fa-plus" aria-hidden="true"></i>
+											Mais info
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- ./mini-card-vertical -->
+
+
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- ./lista-horizontal relacionados-->
+
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

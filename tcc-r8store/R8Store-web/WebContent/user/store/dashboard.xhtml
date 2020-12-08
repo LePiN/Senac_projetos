@@ -1,0 +1,248 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{storeController.showDashboard}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div ng-controller="DashboardController">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h1 class="titulo-pagina">Dashboard</h1>
+				</div>
+
+				<!-- card pontos shopping -->
+				<div class="ui-g-12">
+					<div class="card card-tipo1 dash-pontos-shop">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>#{storeController.store.name}</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<label>Meus Pontos:</label> <span>#{storeController.point.points}</span>
+									<span>pts</span>
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card pontos shopping -->
+
+				<!-- card lohas do shopping-->
+				<div class="ui-g-12">
+					<div class="card card-tipo1 dash-loja">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>
+										<i class="fa fa-shopping-bag" aria-hidden="true"></i> Lojas do
+										shopping
+									</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+
+								<!-- mini-card -->
+								<div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-6 ng-cloak"
+									ng-repeat="store in stores">
+									<div class="card mini-card-tipo2">
+										<div id="" class="body-card">
+											<div class="ui-g">
+												<div class="ui-g-3 div-img">
+													<div class="img"
+														style="background-image: url('#{request.contextPath}/Image/Store/{{ store.id }}/imagemPrincipal');">
+													</div>
+												</div>
+												<div class="ui-g-8 div-info">
+													<div class="txt-info">
+														<h3>{{ store.name }}</h3>
+														<div>
+															<p>{{ store.description ? store.description : 'Esta
+																loja não possui uma descrição' }}</p>
+														</div>
+													</div>
+													<div class="ui-g-12 txt-info center-v">
+														<p class="rate">
+															<span ng-if="store.rating">{{ store.rating | number: 1 }}</span>
+															<span ng-if="!store.rating">5</span>
+															<i class="fa fa-star"
+																aria-hidden="true"></i>
+														</p>
+														<a
+															href="#{request.contextPath}/user/store/loja.xhtml?id={{ store.id }}"
+															target="_self" class="btn-link"><i class="fa fa-plus"
+															aria-hidden="true"></i> Mais info</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /.body-card -->
+									</div>
+								</div>
+								<!-- /.mini-card -->
+
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card lojas do shopping-->
+
+
+				<!-- card Premios -->
+				<div class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-6">
+					<div class="card card-tipo1 dash-premios">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>
+										<i class="fa fa-star" aria-hidden="true"></i> Prêmios
+									</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+
+								<!-- mini-card -->
+								<div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-12 ng-cloak"
+									ng-repeat="award in awards">
+									<div class="card mini-card-tipo3">
+										<div class="body-card">
+											<div class="ui-g">
+												<div class="ui-g-3 div-img">
+													<div class="img"
+														style="background-image: url('#{request.contextPath}/Image/Award/{{ award.id }}/imagemPrincipal');">
+													</div>
+												</div>
+												<div class="ui-g-8 div-info">
+													<div class="txt-info">
+														<h3>{{ award.name }}</h3>
+														<div>
+															<p>{{ award.description }}</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="ui-g-12 footer-mini-card">
+													<div class="ui-g-4 ui-sm-6 pontos">
+														<label>Pontos:</label><br /> <span>{{ award.points
+															}}</span> <span>pts</span>
+													</div>
+													<div class="ui-g-4 ui-sm-6 data">
+														<label>Válido até</label><br /> <span>{{
+															award.date | date:'dd/MM/yyyy' }}</span>
+													</div>
+													<a class="ui-g-4 ui-sm-12 btn-link center"
+														href="#{request.contextPath}/user/store/premio.xhtml?id={{ award.id }}"
+														target="_self"><i class="fa fa-plus"
+														aria-hidden="true"></i> Mais info</a>
+												</div>
+											</div>
+										</div>
+										<!-- /.body-card -->
+									</div>
+								</div>
+								<!-- /.mini-card -->
+
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card Premios -->
+
+
+				<!-- card Produtos-->
+				<div class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-6">
+					<div class="card card-tipo1 dash-produtos">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>
+										<i class="fa fa-camera-retro" aria-hidden="true"></i> Ofertas
+									</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+
+								<!-- mini-card -->
+								<div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-12 ng-cloak"
+									ng-repeat="offer in offers">
+									<div class="card mini-card-tipo4">
+										<div id="" class="body-card">
+											<div class="ui-g">
+												<div class="ui-g-3 div-img">
+													<div class="img"
+														style="background-image: url('#{request.contextPath}/Image/Product/{{ offer.product.id }}/imagemPrincipal');">
+													</div>
+												</div>
+												<div class="ui-g-8 div-info">
+													<div class="txt-info">
+														<h3>{{ offer.title }}</h3>
+														<div>
+															<p>{{ offer.description }}</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="ui-g-12 footer-mini-card">
+													<div class="ui-g-3 ui-sm-6 preco-1">
+														<label>De:</label><br /> <span>R$ {{
+															offer.product.value | number: 2 }}</span>
+													</div>
+													<div class="ui-g-3 ui-sm-6 preco-2">
+														<label>Por:</label><br /> <span>{{
+															offer.product.value - (offer.product.value/100) *
+															offer.discount | number: 2 }}</span>
+													</div>
+													<div class="ui-g-4 ui-sm-6 data">
+														<label>Valido até:</label><br /> <span>{{
+															offer.date | date:'dd/MM/yyyy' }}</span>
+													</div>
+													<a class="ui-g-2 ui-sm-6 btn-link center"
+														href="#{request.contextPath}/user/store/produto.xhtml?id={{ offer.product.id }}"
+														target="_self"><i class="fa fa-plus"
+														aria-hidden="true"></i> Mais info</a>
+
+												</div>
+											</div>
+										</div>
+										<!-- /.body-card -->
+									</div>
+								</div>
+								<!-- /.mini-card -->
+
+							</div>
+						</div>
+						<!-- /.body-card -->
+
+					</div>
+				</div>
+				<!-- /.card Produtos -->
+
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>

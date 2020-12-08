@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{ratingController.createTokenStorePage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div ng-controller="AwardController">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h1 class="titulo-pagina">Avaliar Loja</h1>
+				</div>
+				<!-- card -->
+				<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+					<div class="card card-tipo2 card-token">
+
+						<h:form enctype="multipart/form-data">
+							<!-- form -->
+							<div class="header-card">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+										<h2>Token</h2>
+									</div>
+								</div>
+							</div>
+							<!-- /.header-card -->
+							<div class="body-card">
+								<div class="ui-g">
+									<div class="ui-g-12">
+										<p:inputText placeholder="Nº Token"
+											value="#{ratingController.token}" styleClass="inputs-tipo1" />
+									</div>
+									<div class="ui-g-12">
+										<p:commandButton styleClass="btn-card-tipo1 btn-token"
+											value="Confirmar token" update="message"
+											actionListener="#{ratingController.rateStore}" ajax="false" />
+									</div>
+								</div>
+							</div>
+							<!-- /.body-card -->
+
+							<p:growl id="message" showDetail="true" widgetVar="idMessage" />
+						</h:form>
+						<!-- /.form -->
+
+					</div>
+				</div>
+				<!-- /.card -->
+
+				<!-- card -->
+				<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+					<div class="card card-tipo2 card-token camera">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+									<h2>Ler QR Code</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<button class="btn-camera-on" ng-click="enableCamera()">
+										<i class="fa fa-camera" aria-hidden="true"></i> Habilitar
+										camera
+									</button>
+								</div>
+								<div class="ui-g-12 box-video">
+									<i class="fa fa-camera center" aria-hidden="true"></i>
+									<video id="preview"></video>
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card -->
+
+			</div>
+
+			<div id="myModal" class="modal ng-cloak" ng-show="showModal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<div class="modal-header {{ resultClass }}">
+						<span class="close" ng-click="closeResult()">x</span>
+						<h2>Sucesso!</h2>
+					</div>
+					<div class="modal-body">
+						<div class="nome">
+							<span>Informações</span>
+						</div>
+						<div class="pontos">
+							<label>Você ganhou:</label> <span>#{ratingController.rating.points}</span>
+							<span> pts</span>
+						</div>
+						<div class="pontos">
+							<label>Pontos atuais: </label> <span>#{ratingController.points}</span>
+							<span> pts</span>
+						</div>
+						<div class="ui-g modal-footer">
+							<div class="ui-g-12 ui-sm-12">
+								<button class="btn-sim" ng-click="closeResult()">Confirmar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

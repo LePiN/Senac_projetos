@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+	<f:metadata>
+    	<f:event listener="#{awardController.createListAwardPersonPage}" type="preRenderView" />
+	</f:metadata>
+
+    <ui:define name="content">
+
+    	<div ng-controller="AwardController">
+        <div class="ui-g">
+            <div class="ui-g-12">
+            		<h1 class="titulo-pagina">Prêmios</h1>
+
+            		<div class="ui-g-12 ui-sm-12 ui-md-4 ui-lg-3" ng-repeat="x in myData">
+                        <div class="mini-card-vertical">
+                            <img class="card-img-top" src="../../resources/omega-layout/images/img-test.png"/>
+                            <div class="card-block">
+                                <h4 class="card-title">Titulo bla bla</h4>
+                                <div class="meta">
+                                    <a href="#">Links</a>
+                                </div>
+                                <div class="card-text">
+                                    infos Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    <label>alguma coisa: </label>  <p>{{ x.description }}</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span>info right</span>
+                                <span>info left</span>
+                            </div>
+                            <button ng-click="adquireAward(x.id)" class="btn-busca-lupa"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                </div>
+
+            </div><!-- ./ui-g-12 -->
+        </div><!-- ./ui-g -->
+
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div ng-controller="FooterController">
+		<div class="check-bar ng-cloak" ng-show="showCheckIn">
+			<div class="ui-g">
+				<div class="ui-g-9 ui-sm-7 center-v">
+					<h4>{{ shopping.name }}</h4>
+				</div>
+				<div class="ui-g-3 ui-sm-5 center-v btn-check">
+					<button ng-click="openModal()">
+						<i class="fa fa-map-marker" aria-hidden="true"></i> Faça seu
+						check-in
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="myModal" class="modal modal-check ng-cloak" ng-show="showModal">
+		<!-- <div id="myModal" class="modal modal-check"> -->
+			<!-- Modal content -->
+			<div class="modal-content modal-check-content">
+				<div class="modal-header">
+					<span class="close" ng-click="closeModal()">x</span>
+					<h2>Check-In</h2>
+				</div>
+				<div class="modal-body">
+					<div class="nome">
+						<span>{{ shopping.name }}</span>
+					</div>
+
+					<h3 class="titulo-oferta">
+						<i class="fa fa-shopping-bag" aria-hidden="true"></i> Ofertas do
+						shopping mais perto de você - {{ shopping.name }}
+					</h3>
+
+					<div class="lista-horizontal">
+						<div class="main-oferta">
+
+							<div class="mini-card-vertical" ng-repeat="offer in offers">
+								<div class="div-img">
+									<div class="img"
+										style="background-image: url('#{request.contextPath}/Image/Product/{{ offer.product.id }}/imagemPrincipal');">
+									</div>
+								</div>
+								<div class="card-block">
+									<h4 class="card-title">{{ offer.title }}</h4>
+									<div class="card-text">
+										<div class="ui-g">
+											<div class="ui-g-12 descricao">
+												<label>Descrição: </label>
+												<p>{{ offer.description }}</p>
+											</div>
+											<div class="ui-g-8 plus-info">
+												<label>Preço:</label><br />
+												<div class="preco-de">
+													<span>De:</span> <span>R$</span><span>{{ offer.product.value }}</span>
+												</div>
+												<div class="preco-por">
+													<span>Por:</span> <span>R$</span><span>{{
+														offer.product.value - (offer.product.value/100) *
+														offer.discount | number: 2 }}</span>
+												</div>
+											</div>
+											<div class="ui-g-4 plus-info">
+												<label>Desconto:</label><br /> <span
+													class="desconto center-h">{{ offer.discount }}%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="ui-g">
+										<a class="btn-link ui-g-12 center"
+											href="#{request.contextPath}/user/store/produto.xhtml?id={{ offer.product.id }}"
+											target="_self"> <i class="fa fa-plus" aria-hidden="true"></i>
+											Mais info
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- /.mini-card-vertical -->
+
+						</div>
+						<!-- /.main-oferta -->
+					</div>
+					<!-- /.lista-horizontal -->
+
+					<div class="ui-g modal-footer">
+						<div class="ui-g-12 ui-sm-12">
+							<button class="btn-check" ng-click="confirmCheckIn()">
+								<i class="fa fa-map-marker" aria-hidden="true"></i> Confirmar
+								Check-In
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div id="myModal" class="modal ng-cloak" ng-show="resultModal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header {{ resultClass }}">
+					<span class="close" ng-click="closeResult()">x</span>
+					<h2>{{ responseData.title }}</h2>
+				</div>
+				<div class="modal-body">
+					<div class="nome">
+						<span>{{ responseData.message }}</span>
+					</div>
+					<div class="ui-g modal-footer">
+						<div class="ui-g-12 ui-sm-12">
+							<button class="btn-sim" ng-click="closeResult()">Confirmar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<p:graphicImage name="images/logo-colored02.png"
+			library="omega-layout" width="32" />
+		<span class="footer-text">R8Store</span>
+	</div>
+</ui:composition>

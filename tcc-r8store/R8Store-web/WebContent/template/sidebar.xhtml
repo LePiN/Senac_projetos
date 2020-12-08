@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:po="http://primefaces.org/omega">
+
+	<div class="sidebar">
+		<div class="nano">
+			<div class="nano-content sidebar-scroll-content">
+				<div class="logo">
+					<p:graphicImage name="images/logo-shopping-branca03.svg"
+						library="omega-layout" width="113" />
+				</div>
+
+				<div class="profile">
+
+					<a id="profile-button" href="#"> <span class="username">#{userController.meta.name}</span>
+						<i class="fa fa-fw fa-cog"></i>
+					</a>
+					<ul>
+						<li><a href="#"><i class="fa fa-fw fa-sliders"></i><span>Configurações</span></a></li>
+						<!-- <li><a href="#"><span>Sair</span></a></li> -->
+						<h:form>
+							<li><h:commandLink action="#{userController.logout}"
+									immediate="true">
+									<i class="fa fa-fw fa-sign-out"></i>
+									<span>Sair</span>
+								</h:commandLink></li>
+						</h:form>
+
+					</ul>
+				</div>
+
+				<div class="menu">
+					<po:menu>
+						<p:menuitem id="shopping" value="Shopping" icon="fa fa-building"
+							rendered="#{userController.permission(['PERSON'])}"
+							outcome="/user/store/shoppings" />
+						<p:menuitem id="conquistas" value="Conquistas" icon="fa fa-star"
+							rendered="#{userController.permission(['PERSON'])}"
+							outcome="/user/award/conquistas" />
+						<p:menuitem id="pontos" value="Avaliar Loja"
+							icon="fa fa-star-half-o"
+							rendered="#{userController.permission(['PERSON'])}"
+							outcome="/user/rating/tokenLoja" />
+						<p:submenu id="historico" label="Histórico" icon="fa fa-archive"
+							rendered="#{userController.permission(['PERSON'])}">
+							<p:menuitem id="premio" value="Meus prêmios" icon="fa fa-trophy"
+								outcome="/user/award/historico" />
+						</p:submenu>
+
+
+						<p:menuitem id="dashboard" value="Dashboard"
+							icon="fa fa-tachometer"
+							rendered="#{userController.permission(['STORE', 'EMPLOYEE', 'MANAGER', 'SHOPPING', 'ADMIN'])}"
+							outcome="/admin/dashboard.xhtml" />
+							
+
+						<p:menuitem id="avaliacaoLoja" value="Avaliações"
+							icon="fa fa-star"
+							rendered="#{userController.permission(['STORE', 'MANAGER'])}"
+							outcome="/admin/rating/avaliacoes" />
+						<p:menuitem id="estatisticas" value="Estatisticas"
+							icon="fa fa-line-chart"
+							rendered="#{userController.permission(['STORE', 'MANAGER'])}"
+							outcome="/admin/statistic/relatorio" />
+						<p:menuitem id="gerarToken" value="Gerar Token" icon="fa fa-home"
+							rendered="#{userController.permission(['EMPLOYEE', 'MANAGER'])}"
+							outcome="/admin/rating/gerarToken" />
+						<p:menuitem id="confirmar" value="Finalizar prêmio"
+							icon="fa fa-home"
+							rendered="#{userController.permission(['EMPLOYEE', 'MANAGER'])}"
+							outcome="/admin/award/finalizar" />
+						<p:submenu id="cadastros" label="Cadastros" icon="fa fa-sitemap"
+							rendered="#{userController.permission(['STORE', 'MANAGER'])}">
+							<p:menuitem id="cadastrarFuncionario"
+								value="Cadastrar Funcionário" icon="fa fa-user-plus"
+								outcome="/admin/employee/adicionarFuncionario" />
+							<p:menuitem id="cadastrarProduto" value="Cadastrar Produto"
+								icon="fa fa-tags" outcome="/admin/product/adicionarProduto" />
+							<p:menuitem id="cadastrarOferta" value="Cadastrar Oferta"
+								icon="fa fa-tag" outcome="/admin/offer/adicionar" />
+							<p:menuitem id="cadastrarPremios" value="Cadastrar Prêmio"
+								icon="fa fa-trophy" outcome="/admin/award/adicionarPremio" />
+						</p:submenu>
+						<p:submenu id="listas" label="Visualizar" icon="fa fa-list-alt"
+							rendered="#{userController.permission(['STORE', 'MANAGER'])}">
+							<p:menuitem id="visualisarFuncionarios"
+								value="Visualizar Funcionários" icon="fa fa-users"
+								outcome="/admin/employee/listarFuncionarios" />
+							<p:menuitem id="listarProduto" value="Visualizar Produtos"
+								icon="fa fa-list-ul" outcome="/admin/product/listarProdutos" />
+							<p:menuitem id="listarOferta" value="Visualizar Ofertas"
+								icon="fa fa-list-alt" outcome="/admin/offer/listar" />
+							<p:menuitem id="listarPremios" value="Visualizar Prêmios"
+								icon="fa fa-list" outcome="/admin/award/listarPremios" />
+						</p:submenu>
+
+
+
+
+						<p:menuitem id="avaliacaoShopping" value="Avaliações"
+							icon="fa fa-star"
+							rendered="#{userController.permission(['SHOPPING'])}"
+							outcome="/admin/rating/avaliacoes" />
+						<p:menuitem id="estatisticasShop" value="Estatisticas"
+							icon="fa fa-bar-chart"
+							rendered="#{userController.permission(['SHOPPING'])}"
+							outcome="/admin/statistic/relatorio" />
+						<p:submenu id="cadastrosShop" label="Cadastros"
+							icon="fa fa-sitemap"
+							rendered="#{userController.permission(['SHOPPING'])}">
+							<p:menuitem id="cadastrarFuncionarioShop"
+								value="Cadastrar Funcionário" icon="fa fa-user-plus"
+								outcome="/admin/employee/adicionarFuncionario" />
+							<p:menuitem id="cadastrarLoja" value="Cadastrar Loja"
+								icon="fa fa-shopping-bag" outcome="/admin/store/adicionarLoja" />
+						</p:submenu>
+						<p:submenu id="listarShop" label="Visualizar" icon="fa fa-list-alt"
+							rendered="#{userController.permission(['SHOPPING'])}">
+							<p:menuitem id="visualisarLojas" value="Visualisar Lojas"
+								icon="fa fa-shopping-bag" outcome="/admin/store/listarLojas" />
+							<p:menuitem id="visualisarFuncionariosShop"
+								value="Visualisar Funcionários" icon="fa fa-users"
+								outcome="/admin/employee/listarFuncionarios" />
+						</p:submenu>
+
+
+						<p:menuitem id="cadastrarShopping" value="Cadastrar Shopping"
+							icon="fa fa-shopping-bag"
+							rendered="#{userController.permission(['ADMIN'])}"
+							outcome="/admin/store/adicionarShopping" />
+						<p:menuitem id="visualizarShopping" value="Visualizar Shoppings"
+							icon="fa fa-list-alt"
+							rendered="#{userController.permission(['ADMIN'])}"
+							outcome="/admin/store/listarShoppings" />
+
+					</po:menu>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>

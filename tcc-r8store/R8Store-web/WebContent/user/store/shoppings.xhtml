@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Busca de shopping</h1>
+
+				<div id="body">
+					<div ng-controller="ShoppingController">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-g box-filtro-busca">
+								<div class="ui-g-5 ui-sm-12 box-input-filtro-busca hide-map-mob">
+									<div class="ui-g-12">
+										<div class="ui-g-10">
+											<input id="username" ng-enter-key="findShop()"
+												ng-model="shopName" class="input-busca"
+												placeholder="Buscar Shopping" />
+										</div>
+										<div class="ui-g-2">
+											<button ng-click="findShop()" class="btn-busca-lupa">
+												<i class="fa fa-search" aria-hidden="true"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<!-- ./ui-g-6 -->
+								<div class="ui-g-7 ui-sm-12 box-btn-filtro-map">
+									<div class="ui-g-6 ui-sm-12 hide-map-mob">
+										<button class="btn-card-tipo2 btn-filtro-map"
+											ng-click="findByCoord()">
+											<i class="fa fa-map-marker" aria-hidden="true"></i> Buscar
+											mais próximos
+										</button>
+									</div>
+									<div class="ui-g-6 ui-sm-9">
+										<button class="btn-card-tipo2 btn-filtro-map"
+											ng-click="findByRate()">
+											<i class="fa fa-star" aria-hidden="true"></i> Melhores
+											avaliados
+										</button>
+									</div>
+									<!-- button mapa mobile-->
+									<div class="ui-g-3 btn-mapa-mob">
+										<button class="btn-card-tipo2 btn-filtro-map">
+											<i class="fa fa-map" aria-hidden="true"></i>
+										</button>
+									</div>
+								</div>
+								<!-- ./ui-g-6 -->
+							</div>
+							<!-- ./box-filtro-busca -->
+
+							<div class="ui-g-5 ui-sm-12 box-lista-mini-cards-shop">
+								<!-- box-lista-mini-cards-shop -->
+
+								<div class="card mini-card-tipo1 ng-cloak"
+									ng-repeat="x in myData">
+									<!-- card -->
+									<div id="{{ x.id }}" class="body-card"
+										ng-mouseover="mouseOver(x.id)" ng-mouseleave="mouseOut(x.id)">
+										<div class="ui-g">
+
+											<div class="ui-g-3 div-img">
+												<div class="img"
+													style="background-image: url('#{request.contextPath}/Image/Store/{{ x.id }}/imagemPrincipal');">
+													<!-- <img class="img"
+													src="#{request.contextPath}/Image/Store/{{ x.id }}/imagemPrincipal" /> -->
+												</div>
+											</div>
+											<div class="ui-g-8 div-info">
+												<div class="ui-g-12 txt-info">
+													<h3>{{ x.name }}</h3>
+													<div ng-if="x.address != null &amp;&amp; x.address.id > 0 &amp;&amp; x.address.street &amp;&amp; x.address.city">
+														<p>{{ x.address.street }}, {{ x.address.number }} - {{
+															x.address.city.name }}</p>
+													</div>
+													<div ng-if="x.address == null || x.address.id &lt; 1 || !x.address.street || !x.address.city">
+														<p>Sem endereço definido</p>
+													</div>
+												</div>
+												<div class="ui-g-12 txt-info center-v">
+													<p class="rate">
+														<span>{{ x.rating | number: 1 }}</span> <i class="fa fa-star"
+															aria-hidden="true"></i>
+													</p>
+													<a
+														href="#{request.contextPath}/user/store/dashboard.xhtml?shop={{ x.id }}"
+														target="_self" class="btn-link-shop"><i
+														class="fa fa-shopping-bag" aria-hidden="true"></i> Visitar</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /.body-card -->
+								</div>
+								<!-- /.card -->
+
+							</div>
+							<!-- ./box-lista-mini-cards-shop -->
+							<div class="ui-g-7 ui-sm-12 div-map">
+								<!-- div-map -->
+								<div class="mapa-google mapa-google-mob" id="map"></div>
+							</div>
+							<!-- ./div-map -->
+						</div>
+						<!-- ./ui-g -->
+					</div>
+					<!-- ./body -->
+				</div>
+				<!-- ./ui-g-12 geral -->
+			</div>
+		</div>
+		<!-- ./ui-g geral -->
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKlJmpv8hz0KMHq8yc3kaDK3RIlJ0yYmg&amp;libraries=places"></script>
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+
+	</ui:define>
+</ui:composition>

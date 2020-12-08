@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{ratingController.createRatingPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-6">
+				<h1 class="titulo-pagina">Avaliar Loja</h1>
+
+				<div class="ui-g-12 card card-tipo2 card-avaliacao">
+					<!-- card -->
+					<h:form enctype="multipart/form-data">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+									<span>Nome da loja:</span>
+									<h2>#{ratingController.rating.store.name}</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12 center">
+									<p:rating value="#{ratingController.rate}" cancel="false"
+										styleClass="input-rating" />
+								</div>
+								<div class="ui-g-12">
+									<p:inputTextarea placeholder="max. 250 caracteres"
+										 value="#{ratingController.rating.message}" styleClass="inputs-tipo1 input-caracter-av"
+										counter="display" counterTemplate="{0} caracteres restantes."
+										rows="6" cols="33" maxlength="250" />
+									<h:outputText styleClass="output-caracter" id="display" />
+								</div>
+								<div class="ui-g-12">
+									<p:commandButton styleClass="btn-card-tipo1 btn-avaliacao"
+										value="AVALIAR"
+										actionListener="#{ratingController.createRate}" ajax="false" />
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

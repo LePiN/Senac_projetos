@@ -1,0 +1,196 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{awardController.showAward}" type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div ng-controller="StoreAwardController">
+
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h1 class="titulo-pagina">Detalhe do prêmio</h1>
+				</div>
+
+				<!-- card detalhe premio-->
+				<div class="ui-g-12">
+					<div class="card card-tipo1 detalhe-card detalhe-premio">
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-3 ui-sm-12 div-img">
+									<div class="img"
+										style="background-image: url('#{request.contextPath}/Image/Award/#{awardController.award.id}/imagemPrincipal');"></div>
+								</div>
+								<div class="ui-g-9 ui-sm-12">
+									<div class="ui-g-12 titulo">
+										<h2>#{awardController.award.name}</h2>
+									</div>
+									<div class="ui-g-12 info-pontos">
+										<div class="ui-g-3 ui-sm-6 pontos">
+											<label>Pontos:</label><br /> <span>#{awardController.award.points}</span>
+											<span> pts</span>
+										</div>
+										<div class="ui-g-3 ui-sm-6 validade">
+											<label>Valido até:</label><br /> <span><h:outputText
+													value="#{awardController.award.date}">
+													<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText></span>
+										</div>
+										<div class="ui-g-12 info-btn">
+											<button ng-click="openModal()" ng-show="canAdquire">
+												<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+												Obter premio
+											</button>
+										</div>
+									</div>
+									<div class="ui-g-12 descricao">
+										<label>Descrição do premio:</label>
+										<p>#{awardController.award.description}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="ui-g">
+								<div class="ui-g-10 ui-sm-12 info-loja center-v">
+									<div class="loja">
+										<label>Loja:</label> <span>#{awardController.award.store.name}</span>
+									</div>
+									<div class="local">
+										<label>Local:</label> <span>#{awardController.award.store.localAddress}</span>
+									</div>
+								</div>
+								<a class="ui-g-2 ui-sm-12 btn-link center"
+									href="#{request.contextPath}/user/store/loja.xhtml?id=#{awardController.award.store.id}"
+									target="_self"><i class="fa fa-shopping-bag"
+									aria-hidden="true"></i>Visitar loja </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.card detalhe premio-->
+
+				<div class="ui-g-12">
+					<h2 class="titulo-pagina">
+						<i class="fa fa-shopping-bag" aria-hidden="true"></i> Mais premios
+						relacionados
+					</h2>
+				</div>
+
+				<!-- lista-horizontal relacionados -->
+				<div class="ui-g-12">
+					<div class="lista-horizontal">
+						<div class="body-card">
+
+							<div class="mini-card-vertical ng-cloak" ng-repeat="award in awards">
+								<div class="div-img">
+									<div class="img"
+										style="background-image: url('#{request.contextPath}/Image/Award/{{ award.id }}/imagemPrincipal');">
+									</div>
+								</div>
+								<div class="card-block">
+									<h4 class="card-title">{{ award.name }}</h4>
+									<div class="card-text">
+										<div class="ui-g">
+											<div class="ui-g-12 descricao">
+												<label>Descrição: </label>
+												<p>{{ award.description }}</p>
+											</div>
+											<div class="ui-g-7 plus-info">
+												<label>Custo em Pontos:</label><br /> <span>{{
+													award.points }}</span>
+											</div>
+											<div class="ui-g-5 plus-info">
+												<label>Valido até:</label><br /> <span>{{ award.date
+													| date:'dd/MM/yy' }}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="ui-g">
+										<a class="btn-link ui-g-12 center"
+											href="#{request.contextPath}/user/store/premio.xhtml?id={{ award.id }}"
+											target="_self"> <i class="fa fa-plus" aria-hidden="true"></i>
+											Mais info
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- ./mini-card-vertical -->
+
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- ./lista-horizontal relacionados-->
+
+			</div>
+
+			<!-- The Modal -->
+			<div id="myModal" class="modal ng-cloak" ng-show="showModal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="close" ng-click="closeModal()">x</span>
+						<h2>Deseja obter este prêmio?</h2>
+					</div>
+					<div class="modal-body">
+						<div class="nome">
+							<label>Prêmio:</label> <span>#{awardController.award.name}</span>
+						</div>
+						<div class="pontos">
+							<label>Pontos necessários:</label> <span>#{awardController.award.points}</span>
+							<span> pts</span>
+						</div>
+						<div class="ui-g modal-footer">
+							<div class="ui-g-6 ui-sm-12">
+								<button class="btn-sim"
+									ng-click="adquireAward(#{awardController.award.id})">Sim</button>
+							</div>
+							<div class="ui-g-6 ui-sm-12">
+								<button class="btn-nao" ng-click="closeModal()">Não</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Modal -->
+
+			<!-- Modal sucesso / erro -->
+			<div id="myModal" class="modal ng-cloak" ng-show="resultModal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<div class="modal-header {{ resultClass }}">
+						<span class="close" ng-click="closeResult()">x</span>
+						<h2>{{ responseItem.title }}</h2>
+					</div>
+					<div class="modal-body">
+						<div class="nome">
+							<span>{{ responseItem.message }}</span>
+						</div>
+						<div class="pontos">
+							<label>Prêmio:</label> <span>#{awardController.award.name}</span>
+						</div>
+						<div class="pontos" ng-if="responseItem.code == 100">
+							<label>Pontos atuais: </label> <span>{{ responseItem.points }}</span>
+							<span> pts</span>
+						</div>
+						<div class="ui-g modal-footer">
+							<div class="ui-g-12 ui-sm-12">
+								<button class="btn-sim" ng-click="closeResult()">Confirmar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</ui:define>
+</ui:composition>
