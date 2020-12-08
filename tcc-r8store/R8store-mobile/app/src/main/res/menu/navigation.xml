@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_menu_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/main_menu_home"
+        android:enabled="true" />
+
+    <item
+        android:id="@+id/main_menu_avaliacoes"
+        android:icon="@drawable/ic_avaliacoes_black_24dp"
+        android:title="@string/main_menu_avaliacoes"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/main_menu_shopping"
+        android:icon="@drawable/ic_shopping_black_24dp"
+        android:title="@string/main_menu_shopping"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/main_menu_ofertas"
+        android:icon="@drawable/ic_ofertas_black_24dp"
+        android:title="@string/main_menu_ofertas"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/main_menu_premios"
+        android:icon="@drawable/ic_premios_black_24dp"
+        android:title="@string/main_menu_premios"
+        android:enabled="true"
+        />
+
+</menu>

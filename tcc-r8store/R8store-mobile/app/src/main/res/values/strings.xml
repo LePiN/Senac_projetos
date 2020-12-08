@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">r8store-mob</string>
+    <string name="main_menu_home">Home</string>
+    <string name="main_menu_avaliacoes">Avaliações</string>
+    <string name="main_menu_shopping">Shopping</string>
+    <string name="main_menu_ofertas">Ofertas</string>
+    <string name="main_menu_premios">Premios</string>
+</resources>
