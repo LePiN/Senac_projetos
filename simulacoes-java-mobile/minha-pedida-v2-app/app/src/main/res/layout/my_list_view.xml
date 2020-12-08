@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <LinearLayout android:layout_weight="3" android:padding="10dp" android:id="@+id/my_list_view" android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:layout_weight="1" android:id="@+id/textViewValorUnitario" android:layout_height="wrap_content" android:layout_width="0dp" android:gravity="center" android:layout_gravity="center" android:textSize="20dp" android:text="R$ 10,00"/>
+
+
+    <LinearLayout android:layout_weight="2" android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="0dp" android:paddingLeft="20dp">
+
+    <TextView android:layout_weight="1" android:id="@+id/textViewNomeCategoria" android:layout_height="0dp" android:layout_width="match_parent" android:textSize="15dp" android:text="Categoria" android:layout_marginBottom="5dp"/>
+
+    <TextView android:layout_weight="1" android:id="@+id/textViewNomeProduto" android:layout_height="0dp" android:layout_width="match_parent" android:textSize="15dp" android:text="Produto" android:layout_marginBottom="5dp"/>
+
+    <TextView android:layout_weight="1" android:id="@+id/textViewConclusao" android:layout_height="0dp" android:layout_width="match_parent" android:textSize="15dp" android:text="Conclusão" android:layout_marginBottom="5dp"/>
+
+</LinearLayout>
+
+</LinearLayout>

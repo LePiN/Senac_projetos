@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="br.com.senac.leandro.pesquisaapp.PrincipalActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dadosPessoais"
+        android:onClick="chamarTela"
+        android:id="@+id/btDadosPessoais"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dadosContato"
+        android:onClick="chamarTela"
+        android:id="@+id/btDadosContato"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dadosEndereco"
+        android:onClick="chamarTela"
+        android:id="@+id/btDadoEndereco"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/visualizar"
+        android:onClick="chamarTela"
+        android:id="@+id/btVisualizar"/>
+
+</LinearLayout>

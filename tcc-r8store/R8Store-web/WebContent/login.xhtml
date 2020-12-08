@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>Login</title>
+    </h:head>
+
+    <h:body styleClass="login-body">
+        <div id="login-wrapper">
+            <div id="login-container">
+                <span class="title">Logar-se</span>
+                <div class="ui-g ui-fluid form-login">
+	                <h:form>	                
+	                    <div class="ui-g-12">
+	                        <p:inputText id="username" styleClass="input-login" value="#{loginController.usuarioLogado.login}" required="true" placeholder="Username" />
+	                        <h:outputLabel for="name" value="#{loginController.errors['login']}" rendered="#{loginController.errors['login'] != null}" />
+	                    </div>	                    
+	                    <div class="ui-g-12">
+	                        <p:password id="password" styleClass="input-login" value="#{loginController.usuarioLogado.password}" required="true" placeholder="Password" feedback="false"/>
+	                        <h:outputLabel for="name" value="#{loginController.errors['password']}" rendered="#{loginController.errors['password'] != null}" />
+	                    </div>
+	                    
+	                    <div class="ui-g-12">
+	                        <p:commandButton styleClass="btn-login" value="Entrar" actionListener="#{loginController.loginPersonAction}" ajax="false" />
+	                    </div>	              	                    
+		                
+	                </h:form>
+	                
+	                <h:form>
+	                	<div class="ui-g-12">
+							<p:commandButton value="Login com Facebook" actionListener="#{facebookController.connect()}" 
+							styleClass="btn-login-facebook" icon="fa fa-facebook" />										
+						</div>
+						
+	                    <div class="ui-g-12 ui-md-12">
+	                        <a class="link-login" href="registrar.xhtml">Não tenho uma conta</a>
+	                    </div>
+	                </h:form>
+                </div>
+            </div>
+            
+            <div class="login-footer"><a href="index.xhtml">Voltar</a></div>
+        </div>
+
+        <h:outputStylesheet name="css/layout.css" library="omega-layout" />
+        <h:outputStylesheet name="css/style-layout.css" library="omega-layout" />
+    </h:body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Aula 03 - Atividade 05</title>
+		<!-- Última versão CSS compilada e minificada -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Tema opcional -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Última versão JavaScript compilada e minificada -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	</head>
+	<!-- Usar bootstrap -->
+	<body class="jumbotron">
+		<div id="cabecalho" class="page-header label-success">
+			<h1>Cadastro de carros (cabeçalho)</h1>
+		</div> 
+		 
+		<form action="">
+			<div id="marca1" class="panel panel-success">
+				<div class="panel-heading">
+					Marca 1:
+				</div>
+				
+				<div class="panel-body col-md-12">
+					<div class="form-group">
+						<label class="control-label">Marca:</label>
+						<!-- O atributo name vai representar o item selecionado ("radiogroup") -->
+						<div class="radio">
+							<label class="radio-inline">
+								<input class="form-control" type="radio" name="marca1" value="audi"/>Audi
+							</label>
+							<label class="radio-inline">
+								<input class="form-control" type="radio" name="marca1" value="fiat"/>Fiat
+							</label>
+							<label class="radio-inline">
+								<input class="form-control" type="radio" name="marca1" value="vw"/>Volkswagen
+							</label>						
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="txtModelo">Modelo:</label>
+						<input type="text" name="modelo1" id="txtModelo"/>
+					</div>
+				</div>
+			</div>
+			<!-- TODO CONTINUAR A COLOCAR O BOOTSTRAP -->
+			<div id="marca2">
+				<fieldset>
+					<legend>Marca 2:</legend>
+					<select name="marca2">
+						<option value="audi">Audi</option>
+						<option value="fiat">Fiat</option>
+						<option value="vw">Volkswagen</option>
+					</select>
+				
+					<label>Modelo:</label>
+					<input type="text" name="modelo2"/>
+				</fieldset>
+			</div>
+			<!-- Tag para quebra de linhas -->
+			<div id="divSalvar1">
+				<input type="submit" value="Salvar">
+			</div>
+			<div id="divSalvar2">
+				<input type="submit" value="Salvar">
+			</div>
+		</form>
+		
+		<div id="rodape">Rodapé: Contato: vilmar.junior@edu.sc.senac.br</div>
+	</body>
+</html>

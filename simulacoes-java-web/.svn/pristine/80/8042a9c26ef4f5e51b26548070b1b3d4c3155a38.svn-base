@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Aula 03 - Atividade 1</title>
+		<!-- Importa o arquivo de CSS -->
+		<link rel="stylesheet" href="css/atividade1.css"/>
+	</head>
+	<body>
+		<form action="">
+			<fieldset>
+				<legend class="textoCursivo">Marca:</legend>
+				<!-- O atributo name vai representar o item selecionado ("radiogroup") -->
+				<input type="radio" name="marca" value="audi"/><span class="textoCursivo">Audi</span>
+				<input type="radio" name="marca" value="fiat"/>Fiat
+				<input type="radio" name="marca" value="vw"/>Volkswagen
+				
+				<br>
+				
+				<label>Modelo:</label>
+				<input id="txtModelo" type="text" name="modelo" required/>
+				
+				<label>Ano:</label>
+				<input type="number" name="ano" required/>
+			</fieldset>
+			
+			<br>
+			<br>
+			<input id="btnSalvar" type="submit" value="Salvar">
+		</form>
+	</body>
+</html>

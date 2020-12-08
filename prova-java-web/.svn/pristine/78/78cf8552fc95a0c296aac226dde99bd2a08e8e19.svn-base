@@ -1,0 +1,92 @@
+$(document).ready(function(){
+		
+	var mensagemErro ="Entrada errada!\n";
+		
+	var verificarNome = function(){
+			
+			if($("#txNome").val()){
+				$("#txNome").css({"color":"green"});	
+				return false;
+			}else{
+				mensagemErro += "- Nome obrigatório, Preencha o campo.\n";
+				return true;
+			}	
+	}
+	
+	var verificarCPFtamanho = function(){
+		
+		if(($("#txCPF").val().length)!=14){
+			
+			mensagemErro += "- CPF deve possuir 14 digítos.\n";
+			return true;
+		}else{
+			return false;
+		}
+	}
+		
+	var verificarCPFpontos = function(){
+		
+		var partesPontos = "";
+		
+		partesPontos = $("#txCPF").val().split(".");
+		
+		if(partesPontos.length != 3){
+			mensagemErro += "- CPF deve possuir dois pontos.\n";
+			//alert(partesPontos);
+			return true;
+		}
+	}
+	
+	var verificarCPFtraco = function(){
+		
+		var partesTraco="";
+		
+		partesTraco = $("#txCPF").val().split("-");
+		
+		if(partesTraco.length != 2){
+			mensagemErro += "- CPF deve possuir um traço.\n";
+			//alert("problemas traço");
+			return true;
+		}
+	}
+	
+	var verificarCPFnumeros = function(){
+		
+		var numerosCPF = $("#txCPF").val().replace(/[^\d]+/g,'');
+		
+		if($.isNumeric(numerosCPF)){
+			alert(numerosCPF);
+			return false;
+		}else{
+			
+			mensagemErro += "- CPF não deve conter letras ou caracteres estranhos.\n";
+			return true;
+		}
+	}	
+	
+	var retornoServlet = function(data, status){
+		alert(data);
+	};
+		
+	
+	$("#busca").click(function(){
+				
+		var val1 = verificarNome();
+		var val2 = verificarCPFtamanho();
+		var val3 = verificarCPFpontos();
+		var val4 = verificarCPFtraco();
+		//var val5 = verificarCPFnumeros();
+				
+		if((val1==true)||(val2==true)||(val3==true)||(val4==true)){
+			alert(mensagemErro);
+			mensagemErro ="Entrada errada!\n";
+			//document.getElementById("#formulario").reset();
+		}else{
+			
+			var numero = $("#txCPF").val().replace(/[^\d]+/g,'');
+			$.post("/ProvaDW-LeandroPN/ConsultarPessoa", {cpf : numero}, retornoServlet);
+		}
+			
+	});
+	
+});

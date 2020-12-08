@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Aula 05 - Atividade 3</title>
+		
+		<!-- Importações do Materialize -->
+		<!-- Compiled and minified CSS -->
+	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+	
+		<!-- Importação de jQuery (biblioteca javascript) -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	  	<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+		
+		<!--Import Google Icon Font-->
+     	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     	
+     	<!-- Chama jQuery para iniciar o componente 'select' (combobox) 
+     		 Referência: http://materializecss.com/forms.html#select-initialization -->
+     	<script type="text/javascript">
+     		//Código em jQuery, futuramente vamos mexer mais
+			$(document).ready(function() {
+     	    	$('select').material_select();
+     	 	});
+     	</script>
+	</head>
+ 	<body>
+		<div class="row">
+			<form action="/DW20172/controllerCarros?acao=consultarCarros"
+				  method="POST" 
+				  class="col s12 m12 l12">
+				<!-- Componente para substituir o fieldset -->
+				<div class="card teal lighten-4">
+					<!-- Adiciona um ícone no card -->
+					<i class="material-icons prefix"><i class="material-icons">directions_car</i></i>
+					<span class="card-title">Consulta de carros</span>
+				</div>
+				
+				<div class="row">
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="modelo" name="modelo"> 
+						<label for="modelo">Modelo:</label>
+					</div>
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="paisMontadora" name="paisMontadora"> 
+						<label for="modelo">País da Montadora:</label>
+					</div>
+	        		<div class="input-field col s12 m12 l12">
+						<label for="cidade">Montadora:</label><br>
+						<select name="montadora" id="montadora">
+							<option value="">Selecione</option>
+							<option value="Audi">Audi</option>
+							<option value="Chevrolet">Chevrolet</option>
+							<option value="FIAT" selected>FIAT</option>
+							<option value="Ford">Ford</option>
+							<option value="Volkswagen">Volkswagen</option>
+						</select>
+					</div>
+					
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="valorInicial" name="valorInicial"> 
+						<label for="modelo">Valor inicial:</label>
+					</div>
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="valorFinal" name="valorFinal"> 
+						<label for="modelo">Valor final:</label>
+					</div>
+					
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="anoInicial" name="anoInicial"> 
+						<label for="modelo">Menor ano:</label>
+					</div>
+					<div class="input-field col s6 m6 l6">
+						<input class="validate" type="text" id="anoFinal" name="anoFinal"> 
+						<label for="modelo">Maior ano:</label>
+					</div>
+				</div>
+					
+				<br><br>
+				<button class="btn" type="submit">Buscar</button>
+			</form>
+		</div>
+		<footer>
+			<div class="page-footer light-blue darken-4">
+			    <div class="col s12 l12 s12">
+                	<h5 class="white-text">Desenvolvimento Web 2017.2</h5>
+            	</div>
+				<div class="footer-copyright light-blue darken-4">
+					© 2017 Senac SC
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

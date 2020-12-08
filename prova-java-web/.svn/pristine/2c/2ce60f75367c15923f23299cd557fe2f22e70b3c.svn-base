@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Consulta Endereços</title>
+	</h:head>
+	<h:body>
+	
+		<h1>LISTA ENDEREÇOS</h1>
+			
+			<h:form id="formulario">
+			
+			
+				<p:dataTable id="tabela" var="endereco" value="#{consultaEnderecos.enderecos}">
+				
+					<p:column headerText="Rua">			
+						<h:outputText value="#{endereco.rua}"/>
+					</p:column>
+					
+					<p:column headerText="Número">
+						<h:outputText value="#{endereco.numero}"/>
+					</p:column>
+					
+					<p:column headerText="Bairro">
+						<h:outputText value="#{endereco.bairro}"/>
+					</p:column>
+					
+					<p:column headerText="Editar">
+						<p:commandButton update=":dadosEndereco" oncomplete="PF('enderecoDialog').show()" icon="ui-icon-pencil" title="Edição">
+							<f:setPropertyActionListener value="#{endereco}" target="#{consultaEnderecos.endereco}" />
+						</p:commandButton>
+					</p:column>
+					
+					<p:column headerText="Excluir">
+						<p:commandButton update=":exclusaoEndereco" oncomplete="PF('remocaoDialog').show()" icon="ui-icon-close" title="Exclusão">
+							<f:setPropertyActionListener value="#{endereco}" target="#{consultaEnderecos.endereco}" />
+						</p:commandButton>
+					</p:column>
+						
+				</p:dataTable>
+			</h:form>
+			
+			<p:dialog header="Edição Endereço" widgetVar="enderecoDialog" modal="true" hideEffect="fade" resizable="false">
+				<p:outputPanel id="dadosEndereco" style="text-align:center">
+					<h:form>
+						<p:panelGrid columns="2" rendered="#{not empty consultaEnderecos.endereco}" columnClasses="label, value">
+							
+							<h:outputText value="Rua: "></h:outputText>
+							<h:inputText value="#{consultaEnderecos.endereco.rua}" />
+							
+							<h:outputText value="Número: "></h:outputText>
+							<h:inputText value="#{consultaEnderecos.endereco.numero}" />
+							
+							<h:outputText value="Bairro: "></h:outputText>
+							<h:inputText value="#{consultaEnderecos.endereco.bairro}" />
+							
+							<p:commandButton value="Salvar" icon="ui-icon-check" styleClass="ui-priority-primary" action="#{consultaEnderecos.editarEndereco()}" onclick="resumoDialog.hide();return false;" />
+							<p:commandButton value="Cancelar" icon="ui-icon-check" styleClass="ui-priority-primary" onclick="resumoDialog.hide();return false;" />	
+							
+						</p:panelGrid>
+					</h:form>
+				</p:outputPanel>
+			</p:dialog>
+			
+			<p:dialog header="Remover Endereço" widgetVar="remocaoDialog" modal="true" hideEffect="fade" resizable="false">
+				<p:outputPanel id="exclusaoEndereco" style="text-align:center">
+					<h:outputText value="Deseja de fato excluir o endereço #{consultaEnderecos.endereco}?" />
+					<h:form>
+						<p:commandButton update=":formulario:tabela" value="Sim" icon="ui-icon-check" styleClass="ui-priority-primary" action="#{consultaEnderecos.removerEndereco()}" onclick="resumoDialog.hide();return false;" />
+						<p:commandButton value="Não" icon="ui-icon-check" styleClass="ui-priority-primary" onclick="resumoDialog.hide();#{consultaEnderecos.enderecos};return false;" />
+					</h:form>
+				</p:outputPanel>
+			</p:dialog>
+		
+	</h:body>
+</html>

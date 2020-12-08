@@ -1,0 +1,191 @@
+package br.sc.senac.perisistencia;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.sc.senac.entidades.Endereco;
+
+
+public class EnderecoDAO {
+	
+	private Connection conexao;
+	
+	public Connection getConexao() {
+		return conexao;
+	}
+
+	public void setConexao(Connection conexao) {
+		this.conexao = conexao;
+	}
+	
+	public EnderecoDAO () {
+		conexao = ConnectionFactory.getInstance().obterConexao();
+	}
+	
+	public int salvarEndereco (Endereco e) {
+		
+		int statusAcao = -1;
+		
+		String sql = "INSERT INTO Endereco(rua, numero, bairro) VALUES(?, ?, ?)";
+		try {
+			PreparedStatement ps = this.getConexao().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1,e.getRua());
+			ps.setInt(2, e.getNumero());
+			ps.setString(3, e.getBairro());
+			ps.executeUpdate();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return statusAcao;		
+	}
+	
+	public boolean atualizarEndereco (Endereco e) {
+		
+		boolean statusAcao = false;
+		
+		String sql = "UPDATE Endereco SET rua=?, numero=?, bairro=? WHERE idEndereco=?";
+		
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1,e.getRua());
+			ps.setInt(2, e.getNumero());
+			ps.setString(3, e.getBairro());
+			ps.setInt(4, e.getIdEndereco());
+			
+			int retorno = ps.executeUpdate();
+			
+			if(retorno == 1) {
+				statusAcao = true;
+			} 
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return statusAcao;		
+	}
+	//ESSE M�TODO PRECISA DE REVIS�O. REMO�AO DE ENDERE�O PODE COMPROMOTER INTEGRIDADE DOS DADOS.
+	public boolean removerEndereco (int idEndereco) {
+		
+		boolean statusAcao = false;
+		
+		String sql = "UPDATE Endereco SET dtRemocao=? WHERE idEndereco=?";
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setDate(1,new java.sql.Date(System.currentTimeMillis()));
+			ps.setInt(2, idEndereco);
+			int retorno = ps.executeUpdate();
+			
+			if(retorno == 1) {
+				statusAcao = true;
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return statusAcao;
+	}
+	
+	public Endereco obterEndereco(int idPessoa) {
+		
+		Endereco retorno = new Endereco();
+		
+		String sql = "SELECT * FROM Endereco INNER JOIN PESSOA ON Endereco.idEndereco = Pessoa.idEndereco WHERE idPessoa=?";
+		
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setInt(1, idPessoa);
+			ResultSet rs = ps.executeQuery();		
+			
+			while (rs.next()) {
+				retorno = montarEndereco(rs);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	public Endereco obterEndereco(String rua, int numero, String bairro) {
+		
+		Endereco retorno = new Endereco();
+		
+		String sql = "SELECT * FROM Endereco WHERE rua=? AND numero=? AND bairro=?";
+		
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, rua);
+			ps.setInt(2, numero);
+			ps.setString(3, bairro);
+			
+			//System.out.println(ps);
+			
+			ResultSet rs = ps.executeQuery();		
+			
+			while (rs.next()) {
+				retorno = montarEndereco(rs);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//System.out.println(retorno);
+		return retorno;
+	}
+	
+	public List<Endereco> obterEnderecos(){
+		
+		ArrayList<Endereco> retorno = new ArrayList<Endereco>();
+		
+		String sql = "SELECT * FROM Endereco";
+		
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();		
+			
+			while (rs.next()) {
+				Endereco e = montarEndereco(rs);
+				retorno.add(e);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	private Endereco montarEndereco (ResultSet rs) {
+		
+		Endereco e = new Endereco();
+		
+		try {
+			e.setIdEndereco(rs.getInt("idEndereco"));
+			e.setRua(rs.getString("rua"));
+			e.setNumero(rs.getInt("numero"));
+			e.setBairro(rs.getString("bairro"));
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return e;
+	}
+}

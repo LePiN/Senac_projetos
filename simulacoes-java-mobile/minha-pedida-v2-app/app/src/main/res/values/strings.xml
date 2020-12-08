@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CorrecaoMinhaPedidaApp</string>
+    <string name="lb_minha_comanda">Minha Comanda</string>
+    <string name="lb_add_produto">Adicionar Produto</string>
+    <string name="lb_limpar_lista">Limpar Lista</string>
+    <string name="lb_total">Total: </string>
+    <string name="lb_adicionando_produto">Adicionando Produto</string>
+    <string name="lb_produto">Produto</string>
+    <string name="lb_quantidade">Quantidade</string>
+    <string name="lb_enviar">Enviar</string>
+</resources>

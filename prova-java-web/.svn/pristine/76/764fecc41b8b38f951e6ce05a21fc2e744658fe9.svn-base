@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+>
+	<h:head>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  	crossorigin="anonymous"></script>
+	  	
+	  	<script type="text/javascript" src="EditarPessoa.js"></script>
+	  	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Editar Pessoa</title>
+	</h:head>
+	<h:body>
+		<h1>Editar Pessoa</h1>
+			<p:fieldset legend="Dados" style="margin-bottom:20px">
+				<p:outputPanel for="txNome">Nome: </p:outputPanel>
+				<p:inputText id="txNome"></p:inputText>
+				
+				<p:outputPanel for="txDtNascimento">Data Nascimento: </p:outputPanel>
+				<p:inputText id="txDtNascimento"></p:inputText>
+			</p:fieldset>
+			<button type="button" id="salvar">Salvar</button>
+					
+	</h:body>
+</html>

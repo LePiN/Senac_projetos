@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Consulta Endereços</title>
+	</h:head>
+	<h:body>
+	
+		<h1>LISTA ENDEREÇOS</h1>
+		
+		<p:dataTable var="endereco" value="#{consultaEnderecos.enderecos}">
+		
+			<p:column headerText="Rua">			
+				<h:outputText value="#{endereco.rua}"/>
+			</p:column>
+			
+			<p:column headerText="Número">
+				<h:outputText value="#{endereco.numero}"/>
+			</p:column>
+			
+			<p:column headerText="Bairro">
+				<h:outputText value="#{endereco.bairro}"/>
+			</p:column>
+				
+		</p:dataTable>
+		
+	</h:body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Aula 02 - Exemplo 02 (Bootstrap)</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<body>
+		<h1>Página de exemplo 1</h1>
+		
+		<p>Exemplo de parágrafo......................</p>
+		
+		<h2>Seção 1</h2>
+		
+		<a class="btn btn-success col-lg-9 col-md-6 col-xs-3" href="http://www.sc.senac.br">Clique aqui!</a>
+		<button class="btn btn-warning col-lg-3 col-md-6 col-xs-9">Clique aqui</button>
+	</body>
+</html>

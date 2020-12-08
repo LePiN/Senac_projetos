@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PrecoJustoApp</string>
+    <string name="lbNomeProduto">Nome do Produto</string>
+    <string name="hintNomeProduto">Digite o nome do produto</string>
+    <string name="lbValor">Valor</string>
+    <string name="hintValor">Digite o valor do produto</string>
+    <string name="lbParcelas">Qtd. Parc.</string>
+    <string name="hintParcelas">Qtd. Parc.</string>
+    <string name="lbJuros">Juros (%)</string>
+    <string name="hintJuros">0</string>
+    <string name="btnCalcular">Calcular</string>
+    <string name="btnLimpar">Limpar Dados</string>
+    <string name="txProduto">Produto: </string>
+    <string name="txValorInicial">Valor Inicial:R$  </string>
+    <string name="txValorParcelas">Valor Parcelas:R$  </string>
+    <string name="txValorTotal">Valor Total:R$  </string>
+    <string name="txTotalJuros">Total de Juros:R$  </string>
+</resources>

@@ -1,0 +1,186 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{productController.createListProductPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Produtos</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form id="form">
+						<!-- form -->
+						<div class="header-card btn-header">
+							<div class="ui-g">
+								<div class="ui-g-9 ui-sm-12 ui-md-6 ui-lg-9">
+									<h2>Produtos cadastrados</h2>
+								</div>
+								<div class="ui-g-3 ui-sm-12 ui-md-6 ui-lg-3 div-btn">
+									<p:button styleClass="btn-card-tipo2 btn-card-add ui-sm-12"
+										value="Adicionar Produto"
+										outcome="/admin/product/adicionarProduto" />
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:dataTable id="products" var="product"
+										value="#{productController.products}" reflow="true"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+		                								{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="5,10,15">
+
+										<p:column headerText="Nome">
+											<h:outputText value="#{product.name}" />
+										</p:column>
+
+										<p:column headerText="Descrição">
+											<h:outputText value="#{product.description}" />
+										</p:column>
+
+										<p:column headerText="Valor">
+											<h:outputText value="#{product.value}" />
+										</p:column>
+
+										<p:column style="width:60px;">
+											<p:commandButton styleClass="edit-tab btn-action-tab"
+												update="productEditDlg" oncomplete="PF('editDialog').show()"
+												icon="fa fa-pencil" title="Editar">
+												<f:setPropertyActionListener value="#{product}"
+													target="#{productController.selectedProduct}" />
+											</p:commandButton>
+											<p:commandButton id="selectButton"
+												styleClass="remov-tab btn-action-tab"
+												update=":form:productDlg"
+												oncomplete="PF('storeDialog').show()" icon="fa fa-trash"
+												title="Remover">
+												<f:setPropertyActionListener value="#{product}"
+													target="#{productController.selectedProduct}" />
+											</p:commandButton>
+										</p:column>
+									</p:dataTable>
+
+									<p:growl id="message" showDetail="true" />
+
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+
+						<!-- DIALOG EXCLUIR -->
+						<p:dialog styleClass="remov-dialog"
+							header="Tem certeza que deseja excluir?" widgetVar="storeDialog"
+							resizable="false" id="productDlg" showEffect="fade" modal="true">
+							<div class="ui-g">
+								<div class="ui-g-12 remov-info-div-dialog center">
+									<h:outputText styleClass="remov-label-dialog"
+										value="Nome da loja:" />
+									<h:outputText styleClass="remov-text-dialog"
+										value="#{productController.selectedProduct.name}" />
+								</div>
+								<div class="ui-g-12 center">
+									<p:commandButton id="deleteButton" styleClass="btn-sim"
+										actionListener="#{productController.delete()}"
+										oncomplete="PF('storeDialog').hide()"
+										update=":form:products message" value="Sim" />
+									<p:commandButton id="cancelButton" styleClass="btn-nao"
+										onclick="PF('storeDialog').hide()" value="Não" />
+								</div>
+							</div>
+						</p:dialog>
+
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card-tipo1 -->
+			</div>
+		</div>
+
+
+
+		<!-- DIALOG EDIT -->
+		<p:dialog styleClass="dialog-listar" header="Editar"
+			widgetVar="editDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="productEditDlg">
+			<h:form id="editForm" enctype="multipart/form-data">
+				<div class="ui-g body-dialog-listar dialog-editar-listar">
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="nomeProduto" value="Nome do produto: " />
+							<p:inputText id="nomeProduto" placeholder="Nome do produto"
+								value="#{productController.selectedProduct.name}"
+								styleClass="inputs-tipo1" />
+								<div class="box-label-errors">
+									<h:outputLabel
+										value="#{productController.errors['name']}"
+										rendered="#{productController.errors['name'] != null}" />
+								</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="descricaoProduto"
+								value="Descrição do produto: " />
+							<p:inputTextarea placeholder="Descrição do produto" rows="5"
+								cols="30" counter="display" maxlength="250"
+								counterTemplate="{0} caracteres restantes."
+								value="#{productController.selectedProduct.description}"
+								autoResize="false" styleClass="inputs-tipo1 text-area" />
+							<h:outputText id="display" styleClass="text-caracteres"/>
+							<div class="box-label-errors">
+								<h:outputLabel
+									value="#{productController.errors['description']}"
+									rendered="#{productController.errors['description'] != null}" />
+							</div>
+						</div>
+
+					</div>
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="valorProduto" value="Valor do produto: " />
+							<p:inputNumber id="valorProduto" placeholder="Valor do produto"
+								value="#{productController.selectedProduct.value}"
+								styleClass="input-number" />
+							<div class="box-label-errors">
+								<h:outputLabel
+									value="#{productController.errors['value']}"
+									rendered="#{productController.errors['value'] != null}" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<p:fileUpload label="Imagem do Produto"
+								value="#{productController.file}" mode="simple"
+								skinSimple="true" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{productController.update()}"
+						update=":form:products :form:message editForm" ajax="false" value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+
+
+	</ui:define>
+
+</ui:composition>

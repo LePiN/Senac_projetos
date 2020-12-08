@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{ratingController.createListRatingPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Avaliações</h1>
+
+				<div class="ui-g-12 card card-tipo1 avaliacoes">
+					<!-- card -->
+					<h:form id="form">
+						<!-- form -->
+
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<h2>Avaliações</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:dataTable id="avaliations" var="avaliation"
+										value="#{ratingController.avaliations}" reflow="true"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+		                								{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="5,10,15">
+
+										<f:facet name="header">
+											<p:outputPanel>
+												<h:outputText value="Procure por funcionário: " />
+												<p:inputText id="txtSearch"
+													value="#{ratingController.employeeName}"
+													placeholder="Nome do funcionário">
+													<p:ajax event="keyup" update="form:avaliations"
+														listener="#{ratingController.filterAvaliations()}" />
+												</p:inputText>
+											</p:outputPanel>
+										</f:facet>
+
+										<p:column headerText="Token" style="width:90px;">
+											<h:outputText value="#{avaliation.token}" />
+										</p:column>
+
+										<p:column headerText="Nome do funcionário">
+											<h:outputText value="#{avaliation.employee.name}" />
+										</p:column>
+										<p:column headerText="Comentário">
+											<h:outputText value="#{avaliation.message}" />
+										</p:column>
+
+										<p:column headerText="Avaliação" style="width:80px;"
+											styleClass="col-avaliacoes">
+											<h:outputText value="#{avaliation.total}" />
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</p:column>
+
+									</p:dataTable>
+
+									<p:growl id="message" showDetail="true" />
+
+								</div>
+							</div>
+						</div>
+
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card-tipo1 -->
+			</div>
+		</div>
+
+		<!-- DIALOG Visualizar -->
+		<!-- <p:dialog header="Editar" widgetVar="visuDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Info de teste Visualizar" />
+		</p:dialog> -->
+
+	</ui:define>
+
+</ui:composition>

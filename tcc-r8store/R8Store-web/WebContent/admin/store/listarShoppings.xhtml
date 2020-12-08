@@ -1,0 +1,272 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{storeController.createListShoppingPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Shoppings</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form id="form" enctype="multipart/form-data">
+						<!-- form -->
+						<div class="header-card btn-header">
+							<div class="ui-g">
+								<div class="ui-g-9 ui-sm-12 ui-md-6 ui-lg-9">
+									<h2>Shoppings cadastradas</h2>
+								</div>
+								<div class="ui-g-3 ui-sm-12 ui-md-6 ui-lg-3 div-btn">
+									<p:button styleClass="btn-card-tipo2 btn-card-add ui-sm-12"
+										value="Adicionar shopping"
+										outcome="/admin/store/adicionarShopping" />
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:dataTable id="stores" var="store"
+										value="#{storeController.stores}" reflow="true"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+		                								{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="5,10,15">
+
+										<p:column headerText="Nome da loja">
+											<h:outputText value="#{store.name}" />
+										</p:column>
+
+										<p:column headerText="E-mail">
+											<h:outputText value="#{store.email}" />
+										</p:column>
+
+										<p:column headerText="Nome do admin">
+											<h:outputText value="#{store.user.login}" />
+										</p:column>
+
+										<p:column headerText="CNPJ">
+											<h:outputText value="#{store.cnpj}" />
+										</p:column>
+
+										<p:column style="width:80px;">
+											<p:commandButton styleClass="view-tab btn-action-tab"
+												update="" oncomplete="PF('editUserDialog').show()"
+												icon="fa fa-user" title="Editar login user">
+												<f:setPropertyActionListener value="#{store}"
+													target="#{storeController.selectedStore}" />
+											</p:commandButton>
+											<p:commandButton styleClass="edit-tab btn-action-tab"
+												update="storeEditDlg" oncomplete="PF('editDialog').show()"
+												icon="fa fa-pencil" title="Editar">
+												<f:setPropertyActionListener value="#{store}"
+													target="#{storeController.selectedStore}" />
+											</p:commandButton>
+											<p:commandButton id="selectButton"
+												styleClass="remov-tab btn-action-tab"
+												update=":form:storeDlg"
+												oncomplete="PF('storeDialog').show()" icon="fa fa-trash"
+												title="Remover">
+												<f:setPropertyActionListener value="#{store}"
+													target="#{storeController.selectedStore}" />
+											</p:commandButton>
+										</p:column>
+									</p:dataTable>
+
+									<p:growl id="message" showDetail="true" />
+
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+
+						<!-- DIALOG EXCLUIR -->
+						<p:dialog styleClass="remov-dialog"
+							header="Tem certeza que deseja excluir?" widgetVar="storeDialog"
+							resizable="false" id="storeDlg" showEffect="fade" modal="true">
+							<div class="ui-g">
+								<div class="ui-g-12 remov-info-div-dialog center">
+									<h:outputText styleClass="remov-label-dialog"
+										value="Nome da loja:" />
+									<h:outputText styleClass="remov-text-dialog"
+										value="#{storeController.selectedStore.name}" />
+								</div>
+								<div class="ui-g-12 center">
+									<p:commandButton id="deleteButton" styleClass="btn-sim"
+										actionListener="#{storeController.delete()}"
+										oncomplete="PF('storeDialog').hide()"
+										update=":form:stores message" value="Sim" />
+									<p:commandButton id="cancelButton" styleClass="btn-nao"
+										onclick="PF('storeDialog').hide()" value="Não" />
+								</div>
+							</div>
+						</p:dialog>
+
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card-tipo1 -->
+			</div>
+		</div>
+
+
+		<!-- DIALOG EDIT -->
+		<p:dialog styleClass="dialog-listar" header="Editar"
+			widgetVar="editDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="storeEditDlg">
+			<h:form id="editForm" enctype="multipart/form-data">
+				<div class="ui-g body-dialog-listar dialog-editar-listar">
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="nomeLoja" value="Nome da Loja: " />
+							<p:inputText id="nomeLoja" placeholder="Nome da loja (fantasia)"
+								value="#{storeController.selectedStore.name}"
+								styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="name" styleClass="label-errors"
+									value="#{storeController.errors['name']}"
+									rendered="#{storeController.errors['name'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="inscriçãoEstadual"
+								value="Inscrição Estadual: " />
+							<p:inputMask id="inscriçãoEstadual"
+								placeholder="Inscricao Estadual"
+								value="#{storeController.selectedStore.inscricaoEstadual}"
+								mask="999.999.999.999" styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="inscriçãoEstadual" styleClass="label-errors"
+									value="#{storeController.errors['inscricao']}"
+									rendered="#{storeController.errors['inscricao'] != null}" />
+								<h:outputLabel for="inscriçãoEstadual" styleClass="label-errors"
+									value="#{storeController.errors['inscricaoExists']}"
+									rendered="#{storeController.errors['inscricaoExists'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="cnpj" value="CNPJ: " />
+							<p:inputMask id="cnpj" placeholder="CNPJ"
+								value="#{storeController.selectedStore.cnpj}"
+								mask="99.999.999/9999-99" styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="cnpj" styleClass="label-errors"
+									value="#{storeController.errors['cnpj']}"
+									rendered="#{storeController.errors['cnpj'] != null}" />
+								<h:outputLabel for="cnpj" styleClass="label-errors"
+									value="#{storeController.errors['cnpjExists']}"
+									rendered="#{storeController.errors['cnpjExists'] != null}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="email" value="Email: " />
+							<p:inputText id="email" placeholder="Email"
+								value="#{storeController.selectedStore.email}"
+								styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="email" styleClass="label-errors"
+									value="#{storeController.errors['email']}"
+									rendered="#{storeController.errors['email'] != null}" />
+								<h:outputLabel for="email" styleClass="label-errors"
+									value="#{storeController.errors['emailExists']}"
+									rendered="#{storeController.errors['emailExists'] != null}" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="telefone" value="Telefone: " />
+							<p:inputMask id="telefone" placeholder="Telefone"
+								value="#{storeController.selectedStore.tel}"
+								mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="celular" value="Celular: " />
+							<p:inputMask id="celular" placeholder="Celular"
+								value="#{storeController.selectedStore.cel}"
+								mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<p:fileUpload label="Imagem do shopping" id="fileUpload"
+								value="#{storeController.file}" mode="simple" skinSimple="true" />
+						</div>
+					</div>
+				</div>
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{storeController.update()}"
+						update=":form:stores :form:message editForm" ajax="false" value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+
+		<!-- DIALOG Editar login -->
+		<p:dialog styleClass="dialog-listar" header="Editar Usuário"
+			widgetVar="editUserDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="storeEditUserDialog">
+			<h:form id="editUserForm">
+				<div class="ui-g body-dialog-listar dialog-user-listar">
+					<div class="ui-g-12 ui-sm-12 ui-md-12">
+						<h:outputLabel for="login" value="Login: " />
+						<p:inputText id="login" placeholder="Login"
+							value="#{storeController.selectedStore.user.login}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="login"
+							value="#{storeController.errors['login']}"
+							rendered="#{storeController.errors['login'] != null}" />
+						<h:outputLabel for="login"
+							value="#{storeController.errors['userExists']}"
+							rendered="#{storeController.errors['userExists'] != null}" />
+					</div>
+
+					<div class="ui-g-12 ui-sm-12 ui-md-12">
+						<h:outputLabel for="senha" value="Senha: " />
+						<p:password id="senha" redisplay="true" placeholder="Senha"
+							value="#{storeController.selectedStore.user.password}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="senha"
+							value="#{storeController.errors['password']}"
+							rendered="#{storeController.errors['password'] != null}" />
+					</div>
+
+					<div class="ui-g-12 ui-sm-12 ui-md-12">
+						<h:outputLabel for="conf" value="Confirme: " />
+						<p:password id="conf" placeholder="Digite a sua senha novamente"
+							value="#{storeController.selectedStore.user.confPassword}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="conf"
+							value="#{storeController.errors['confirmation']}"
+							rendered="#{storeController.errors['confirmation'] != null}" />
+					</div>
+				</div>
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{storeController.updateUser()}"
+						update=":form:stores :form:message editUserForm" value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editUserDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>

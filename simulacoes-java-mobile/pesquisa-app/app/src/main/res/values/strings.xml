@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PesquisaApp</string>
+    <string name="dadosPessoais">Dados Pessoais</string>
+    <string name="dadosContato">Dados Contato</string>
+    <string name="dadosEndereco">Dados Endereço</string>
+    <string name="visualizar">Visualizar</string>
+    <string name="hint_nome">Digite seu nome</string>
+    <string name="hint_idade">Digite sua idade</string>
+    <string name="label_salvar">Salvar</string>
+    <string name="label_retornar">Retornar</string>
+    <string name="hint_telefone">Digite seu telefone</string>
+    <string name="hint_email">Digite seu e-mail</string>
+    <string name="hint_cep">Digite seu CEP</string>
+    <string name="hint_cidade">Digite sua cidade</string>
+    <string name="hint_estado">Digite seu estado</string>
+</resources>

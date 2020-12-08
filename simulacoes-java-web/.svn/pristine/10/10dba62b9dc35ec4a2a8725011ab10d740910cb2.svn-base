@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* Referência: https://www.w3schools.com/css/css_boxmodel.asp */
+#div1 {
+	box-sizing: border-box;
+	background-color: RED;
+	padding: 20px;
+	border: 20px BLACK solid;
+	width: 200px;
+	outline-style: dashed;
+}
+
+#div2 {
+	background-color: BLUE;
+	padding: 20px;
+	border: 20px BLACK solid;
+	width: 200px;
+	outline-style: dotted;
+}

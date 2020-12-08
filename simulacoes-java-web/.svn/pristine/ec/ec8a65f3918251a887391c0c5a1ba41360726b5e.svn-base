@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Aula 03 - Exemplo 4</title>
+<!-- 		<link rel="stylesheet" href="css/div.css"> -->
+
+		<!-- Importações do Materialize -->
+		<!-- Compiled and minified CSS -->
+	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+	
+	  	<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+		
+		<!-- Referências: 
+			http://materializecss.com/
+			http://materializecss.com/grid.html
+		-->
+	</head>
+	<body>
+		<div class="row">
+			<div id="div1" class="col s3 m6 l12 card-panel blue darken-4 white-text">
+			  <h1>Div Azul</h1>
+			</div>
+			<div id="div2" class="col card-panel m6 red s3 l12">
+			  <h1 class="white-text">Div Vermelha</h1>
+			</div>
+			<div id="div3" class="col s3 m6 l12">
+				<a class="btn green col s3 m6 l12"> Botão verde</a>
+	<!-- 		  <h1>Div Verde</h1> -->
+			</div>
+			<div id="div4" class="col l12 card-panel grey">
+				<button class="btn-flat black white-text col l12">Botão preto</button>
+	<!-- 		  <h1>Div Preta</h1> -->
+			</div>
+		</div>
+	</body>
+</html>

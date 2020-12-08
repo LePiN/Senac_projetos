@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MinhasNotasApp</string>
+    <string name="bt_dados_disciplina">Dados da Disciplina</string>
+    <string name="bt_dados_avaliacao1">Dados da 1ª Avaliação</string>
+    <string name="bt_dados_avaliacao2">Dados da 2ª Avaliação</string>
+    <string name="bt_enviar_dados">Enviar Dados</string>
+    <string name="bt_fechar">Fechar</string>
+    <string name="lb_nome">Nome</string>
+    <string name="hint_nome">Digite seu nome</string>
+    <string name="lb_professor">Professor</string>
+    <string name="hint_professor">Digite o nome do professor</string>
+    <string name="bt_salvar">Salvar</string>
+    <string name="bt_cancelar">Cancelar</string>
+    <string name="lb_avaliacao1">1ª Avaliação</string>
+    <string name="lb_avaliacao2">2ª Avaliação</string>
+    <string name="lb_titulo">Título</string>
+    <string name="hint_titulo">Digite o título da avaliação</string>
+    <string name="lb_nota">Nota</string>
+    <string name="hint_nota">Digite a nota</string>
+    <string name="lb_resultado">Resultado Final</string>
+    <string name="lb_disciplina">Disciplina</string>
+    <string name="lb_nota1">1ª Nota</string>
+    <string name="lb_nota2">2ª Nota</string>
+    <string name="bt_voltar_editar">Voltar e Editar</string>
+    <string name="bt_voltar_limapar">Voltar e Limpar Dados</string>
+</resources>

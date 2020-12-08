@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Aula 09 - Atividade 01 - jQuery</title>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+		
+		<!-- Inclui uma versão do jQuery via CDN -->		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		
+		<!-- Inclui o javascript com as funções para o exercício -->
+		<script src="js/atividades.js"></script>
+	</head>
+	<body>
+		<button id="botao1" type="button">Ocultar primeiro parágrafo</button>
+		<button id="botao2" type="button">Mostrar parágrafos (Duplo clique)</button>
+		
+		<p>Parágrafo que será ocultado/mostrado</p>
+		<p>Parágrafo que não pode ser ocultado</p>
+		<br><br>
+		
+		<h1>Passe o mouse aqui</h1>
+		
+		<br><br>
+		<form>
+			<div class="form-group">
+				<label for="nome">Nome:</label>
+  				<input type="text" class="form-control campoFormulario" id="nome">
+			</div>
+			
+		</form>
+		
+		<button class="btn btn-info" id="btnAdicionar">Adicionar botão</button>
+		<button class="btn btn-primary" id="btnRemover">Remover botão</button>
+		<div id="divBotoes"/>
+		
+		<br><br>
+		<h2 id="apagar">Ocultar Tudo</h2>
+	</body>
+</html>

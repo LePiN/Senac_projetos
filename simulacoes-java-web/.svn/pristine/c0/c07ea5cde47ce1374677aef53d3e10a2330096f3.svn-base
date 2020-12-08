@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/* TODO
+Escolha cores distintas de fundo para cada área e coloque 
+seus dados (nome e e-mail) no rodapé (no HTML);
+
+Utilize a propriedade CSS float em conjunto com as tags <div> 
+para colocar os formulários de marca 1 e marca 2 lado a lado.
+
+*/
+#cabecalho{
+	background-color: #ccebff;
+}
+
+#marca1{
+	background-color: #d9ffb3;
+	float: left;
+}
+
+#marca2{
+	background-color: #ffd9b3;
+	float: right;
+}
+
+#rodape{
+	background-color: #2222FF;
+	clear: both;
+}

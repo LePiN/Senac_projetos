@@ -1,0 +1,215 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{employeeController.createAddEmployeePage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Adicionar novo Funcionario</h1>
+
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form id="formF" styleClass="adicionar-funcionario">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Infos do Funcionário</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12">
+
+									<p:inputText placeholder="Nome"
+										value="#{employeeController.employee.name}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{employeeController.errors['name']}"
+											rendered="#{employeeController.errors['name'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="CPF"
+										value="#{employeeController.employee.identifier}"
+										mask="999.999.999-99" styleClass="inputs-tipo1">
+										<p:ajax event="blur" update="formF"
+											listener="#{employeeController.onIdentifierChange}" />
+									</p:inputMask>
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{employeeController.errors['identifier']}"
+											rendered="#{employeeController.errors['identifier'] != null}" />
+										<h:outputLabel
+											value="#{employeeController.errors['identifierExists']}"
+											rendered="#{employeeController.errors['identifierExists'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="Celular"
+										value="#{employeeController.employee.cel}"
+										mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+
+									<p:inputMask placeholder="Telefone"
+										value="#{employeeController.employee.tel}"
+										mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+
+									<p:inputText placeholder="E-mail"
+										value="#{employeeController.employee.email}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{employeeController.errors['email']}"
+											rendered="#{employeeController.errors['email'] != null}" />
+										<h:outputLabel
+											value="#{employeeController.errors['emailExists']}"
+											rendered="#{employeeController.errors['emailExists'] != null}" />
+									</div>
+
+									<div class="box-select-adicionar box-tipo-fun">
+										<div class="ui-g-4 ui-sm-12 ui-md-12 ui-lg-4">
+											<p:calendar placeholder="Data de Nascimento"
+												value="#{employeeController.employee.birthday}" />
+										</div>
+										<div class="ui-g-3 ui-sm-6 ui-md-6 ui-lg-3">
+											<p:selectOneMenu id="gender" styleClass="inputs-select"
+												value="#{employeeController.employee.gender}"
+												converter="omnifaces.SelectItemsConverter">
+												<f:selectItem itemLabel="Sexo" noSelectionOption="true" />
+												<f:selectItems value="#{employeeController.genders()}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+										<div class="ui-g-5 ui-sm-6 ui-md-6 ui-lg-5">
+											<p:selectOneMenu id="type" styleClass="inputs-select"
+												value="#{employeeController.employee.type}"
+												converter="omnifaces.SelectItemsConverter">
+												<f:selectItem itemLabel="Tipo de funcionário"
+													noSelectionOption="true" />
+												<f:selectItems value="#{employeeController.types}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+										<div class="box-label-errors">
+											<h:outputLabel value="#{employeeController.errors['type']}"
+												rendered="#{employeeController.errors['type'] != null}" />
+										</div>
+									</div>
+								</div>
+
+								<div class="ui-g-6 ui-sm-12">
+									<p:inputText placeholder="Nome do usuário"
+										value="#{employeeController.employee.user.login}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{employeeController.errors['login']}"
+											rendered="#{employeeController.errors['login'] != null}" />
+										<h:outputLabel
+											value="#{employeeController.errors['userExists']}"
+											rendered="#{employeeController.errors['userExists'] != null}" />
+									</div>
+
+									<p:password placeholder="Senha"
+										value="#{employeeController.employee.user.password}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{employeeController.errors['password']}"
+											rendered="#{employeeController.errors['password'] != null}" />
+									</div>
+
+									<p:password placeholder="Confirme a senha"
+										value="#{employeeController.employee.user.confPassword}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{employeeController.errors['confirmation']}"
+											rendered="#{employeeController.errors['confirmation'] != null}" />
+									</div>
+								</div>
+
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputMask placeholder="CEP"
+										value="#{employeeController.employee.address.zipCode}"
+										mask="99.999-999" styleClass="inputs-tipo1">
+										<p:ajax event="blur" update="rua state city bairro"
+											listener="#{employeeController.onZipChange}" />
+									</p:inputMask>
+									<div class="box-select-adicionar ui-g-12">
+										<div class="ui-g-6 state">
+											<p:selectOneMenu id="state"
+												value="#{employeeController.state}"
+												styleClass="inputs-select"
+												converter="omnifaces.SelectItemsConverter">
+												<p:ajax listener="#{employeeController.onStateChange}"
+													update="city" />
+												<f:selectItem itemLabel="Selecione o estado" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItems value="#{employeeController.states}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+										<div class="ui-g-6 city">
+											<p:selectOneMenu id="city" value="#{employeeController.city}"
+												styleClass="inputs-select"
+												converter="omnifaces.SelectItemsConverter">
+												<f:selectItem itemLabel="Selecione a cidade" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItems value="#{employeeController.cities}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+									</div>
+									<p:inputText id="bairro" placeholder="Bairro"
+										value="#{employeeController.employee.address.district}"
+										styleClass="inputs-tipo1" />
+									<p:inputText id="rua" placeholder="Rua"
+										value="#{employeeController.employee.address.street}"
+										styleClass="inputs-tipo1" />
+									<p:inputText id="numero" placeholder="Número"
+										value="#{employeeController.employee.address.number}"
+										styleClass="inputs-tipo1" />
+									<p:inputText placeholder="Complemento"
+										value="#{employeeController.employee.address.complement}"
+										styleClass="inputs-tipo1" />
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="div-btn">
+								<p:commandButton
+									styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+									value="Adicionar Funcionário" update="message"
+									actionListener="#{employeeController.registerAction}"
+									ajax="false" />
+								<p:button styleClass="btn-card-tipo1 btn-card-cancel ui-sm-12"
+									value="Cancelar" outcome="/admin/store/listarLojas" />
+							</div>
+						</div>
+
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

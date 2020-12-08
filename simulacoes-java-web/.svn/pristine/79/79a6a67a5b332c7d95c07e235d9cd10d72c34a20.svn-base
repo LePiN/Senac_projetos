@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<script src="js/atividade1.js"></script>
+	<title>Atividade 1 - JS</title>
+</head>
+
+<body>
+	<h1>Atividade 1 - JS</h1>
+	<p id="paragrafo">Texto Inicial</p>
+	<button onclick="alterarParagrafo()">Pressionar</button>
+</body>
+</html>

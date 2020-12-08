@@ -1,0 +1,351 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{employeeController.createListEmployeePage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Funcionários</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form id="form">
+						<!-- form -->
+						<div class="header-card btn-header">
+							<div class="ui-g">
+								<div class="ui-g-9 ui-sm-12 ui-md-6 ui-lg-9">
+									<h2>Funcionários cadastrados</h2>
+								</div>
+								<div class="ui-g-3 ui-sm-12 ui-md-6 ui-lg-3 div-btn">
+									<p:button styleClass="btn-card-tipo2 btn-card-add ui-sm-12"
+										value="Adicionar Funcionários"
+										outcome="/admin/employee/adicionarFuncionario" />
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:dataTable id="employees" var="employee"
+										value="#{employeeController.employees}" reflow="true"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+		                								{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="5,10,15">
+
+										<p:column headerText="Nome do funcionário">
+											<h:outputText value="#{employee.name}" />
+										</p:column>
+
+										<p:column headerText="E-mail">
+											<h:outputText value="#{employee.email}" />
+										</p:column>
+
+										<p:column headerText="Nome do usuário">
+											<h:outputText value="#{employee.user.login}" />
+										</p:column>
+
+										<p:column headerText="CPF">
+											<h:outputText value="#{employee.identifier}" />
+										</p:column>
+
+										<p:column style="width:80px;">
+											<p:commandButton styleClass="view-tab btn-action-tab"
+												update="" oncomplete="PF('editUserDialog').show()"
+												icon="fa fa-user" title="Visualizar">
+												<f:setPropertyActionListener value="#{employee}"
+													target="#{employeeController.selectedEmployee}" />
+											</p:commandButton>
+											<p:commandButton styleClass="edit-tab btn-action-tab"
+												update="employeeEditDlg"
+												oncomplete="PF('editDialog').show()" icon="fa fa-pencil"
+												title="Editar">
+												<f:setPropertyActionListener value="#{employee}"
+													target="#{employeeController.selectedEmployee}" />
+											</p:commandButton>
+											<p:commandButton id="selectButton"
+												styleClass="remov-tab btn-action-tab"
+												update=":form:employeeDlg"
+												oncomplete="PF('employeeDialog').show()" icon="fa fa-trash"
+												title="Remover">
+												<f:setPropertyActionListener value="#{employee}"
+													target="#{employeeController.selectedEmployee}" />
+											</p:commandButton>
+										</p:column>
+									</p:dataTable>
+
+									<p:growl id="message" showDetail="true" />
+
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+
+						<!-- DIALOG EXCLUIR -->
+						<p:dialog styleClass="remov-dialog"
+							header="Tem certeza que deseja excluir?"
+							widgetVar="employeeDialog" resizable="false" id="employeeDlg"
+							showEffect="fade" modal="true">
+							<div class="ui-g">
+								<div class="ui-g-12 remov-info-div-dialog center">
+									<h:outputText styleClass="remov-label-dialog"
+										value="Nome do funcionário" />
+									<h:outputText styleClass="remov-text-dialog"
+										value="#{employeeController.selectedEmployee.name}" />
+								</div>
+								<div class="ui-g-12 center">
+									<p:commandButton id="deleteButton" styleClass="btn-sim"
+										actionListener="#{employeeController.delete()}"
+										oncomplete="PF('employeeDialog').hide()"
+										update=":form:employees message" value="Sim" />
+									<p:commandButton id="cancelButton" styleClass="btn-nao"
+										onclick="PF('employeeDialog').hide()" value="Não" />
+								</div>
+							</div>
+						</p:dialog>
+
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card-tipo1 -->
+			</div>
+		</div>
+
+		<!-- DIALOG EDIT -->
+		<p:dialog styleClass="dialog-listar" header="Editar"
+			widgetVar="editDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="employeeEditDlg">
+			<h:form id="editForm">
+				<div class="ui-g body-dialog-listar dialog-editar-listar">
+					<div class="ui-g-6 ui-sm-12">
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="nomeLoja" value="Nome da Loja: " />
+							<p:inputText id="nomeLoja" placeholder="Nome da loja (fantasia)"
+								value="#{employeeController.selectedEmployee.name}"
+								styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel value="#{employeeController.errors['name']}"
+									rendered="#{employeeController.errors['name'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="cpf" value="CPF: " />
+							<p:inputMask id="cpf" placeholder="CPF"
+								value="#{employeeController.selectedEmployee.identifier}"
+								mask="999.999.999-99" styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="cpf"
+									value="#{employeeController.errors['identifier']}"
+									rendered="#{employeeController.errors['identifier'] != null}" />
+								<h:outputLabel for="cpf"
+									value="#{employeeController.errors['identifierExists']}"
+									rendered="#{employeeController.errors['identifierExists'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="cep" value="CEP: " />
+							<p:inputText id="cep" placeholder="CEP"
+								value="#{employeeController.selectedEmployee.address.zipCode}"
+								styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="estado" value="Estado: " />
+							<p:selectOneMenu id="state" value="#{employeeController.state}"
+								styleClass="inputs-select"
+								converter="omnifaces.SelectItemsConverter">
+								<p:ajax listener="#{employeeController.onStateChange}"
+									update="city" />
+								<f:selectItem itemLabel="Selecione o estado" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{employeeController.states}" var="entity"
+									itemLabel="#{entity.name}" itemValue="#{entity}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="cidade" value="Cidade: " />
+							<p:selectOneMenu id="city" value="#{employeeController.city}"
+								styleClass="inputs-select"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Selecione a cidade" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{employeeController.cities}" var="entity"
+									itemLabel="#{entity.name}" itemValue="#{entity}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="bairro" value="Bairro: " />
+							<p:inputText id="bairro" placeholder="Bairro"
+								value="#{employeeController.selectedEmployee.address.district}"
+								styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="rua" value="Rua: " />
+							<p:inputText id="rua" placeholder="Rua"
+								value="#{employeeController.selectedEmployee.address.street}"
+								styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="numero" value="Numero: " />
+							<p:inputText id="numero" placeholder="Numero"
+								value="#{employeeController.selectedEmployee.address.number}"
+								styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="complemento" value="Complemento: " />
+							<p:inputText id="complemento" placeholder="Complemento"
+								value="#{employeeController.selectedEmployee.address.complement}"
+								styleClass="inputs-tipo1" />
+						</div>
+
+					</div>
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="email" value="Email: " />
+							<p:inputText id="email" placeholder="Email"
+								value="#{employeeController.selectedEmployee.email}"
+								styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="name"
+									value="#{employeeController.errors['email']}"
+									rendered="#{employeeController.errors['email'] != null}" />
+								<h:outputLabel for="name"
+									value="#{employeeController.errors['emailExists']}"
+									rendered="#{employeeController.errors['emailExists'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="telefone" value="Telefone: " />
+							<p:inputMask id="telefone" placeholder="Telefone"
+								value="#{employeeController.selectedEmployee.tel}"
+								mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="celular" value="Celular: " />
+							<p:inputMask id="celular" placeholder="Celular"
+								value="#{employeeController.selectedEmployee.cel}"
+								mask="(99) 9999-9999" styleClass="inputs-tipo1" />
+						</div>
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="dtnasc" value="Data de nascimento: " />
+							<p:calendar id="dtnasc" placeholder="Data de Nascimento"
+								value="#{employeeController.selectedEmployee.birthday}" />
+						</div>
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="gender" value="Sexo: " />
+							<br />
+							<p:selectOneMenu id="gender" styleClass="inputs-select"
+								value="#{employeeController.selectedEmployee.gender}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{employeeController.genders()}"
+									var="entity" itemLabel="#{entity.name}" itemValue="#{entity}" />
+							</p:selectOneMenu>
+							<div class="box-label-errors">
+								<h:outputLabel value="#{employeeController.errors['gender']}"
+									rendered="#{employeeController.errors['gender'] != null}" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12">
+							<h:outputLabel for="fun" value="Tipo de funcionario: " />
+							<br />
+							<p:selectOneMenu id="type" styleClass="inputs-select"
+								value="#{employeeController.selectedEmployee.type}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Tipo de funcionário"
+									noSelectionOption="true" />
+								<f:selectItems value="#{employeeController.types}" var="entity"
+									itemLabel="#{entity.name}" itemValue="#{entity}" />
+							</p:selectOneMenu>
+							<div class="box-label-errors">
+								<h:outputLabel value="#{employeeController.errors['type']}"
+									rendered="#{employeeController.errors['type'] != null}" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{employeeController.update()}"
+						update=":form:employees :form:message editForm" value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+
+		<!-- DIALOG Editar Usuario -->
+		<p:dialog styleClass="dialog-listar" header="Editar Usuário"
+			widgetVar="editUserDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="employeeEditUserDialog">
+			<h:form id="editUserForm">
+
+				<div class="ui-g body-dialog-listar dialog-user-listar">
+					<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+						<h:outputLabel for="login" value="Login: " />
+						<p:inputText id="login" placeholder="Login"
+							value="#{employeeController.selectedEmployee.user.login}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="login"
+							value="#{employeeController.errors['login']}"
+							rendered="#{employeeController.errors['login'] != null}" />
+						<h:outputLabel for="login"
+							value="#{employeeController.errors['userExists']}"
+							rendered="#{employeeController.errors['userExists'] != null}" />
+					</div>
+
+					<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+						<h:outputLabel for="senha" value="Senha: " />
+						<p:password id="senha" redisplay="true" placeholder="Senha"
+							value="#{employeeController.selectedEmployee.user.password}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="senha"
+							value="#{employeeController.errors['password']}"
+							rendered="#{employeeController.errors['password'] != null}" />
+					</div>
+
+					<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+						<h:outputLabel for="conf" value="Confirme a senha: " />
+						<p:password id="conf" placeholder="Digite a sua senha novamente"
+							value="#{employeeController.selectedEmployee.user.confPassword}"
+							styleClass="inputs-tipo1" />
+						<h:outputLabel for="conf"
+							value="#{employeeController.errors['confirmation']}"
+							rendered="#{employeeController.errors['confirmation'] != null}" />
+					</div>
+				</div>
+
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{employeeController.updateUser()}"
+						update=":form:employees :form:message editUserForm"
+						value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editUserDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>

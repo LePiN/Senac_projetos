@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CalculadoraApp</string>
+    <string name="hintNumeroA">N1</string>
+    <string name="hintNumeroB">N2</string>
+    <string name="lbSoma">+</string>
+    <string name="lbSubtracao">-</string>
+    <string name="lbMultiplicacao">X</string>
+    <string name="lbDivisao">/</string>
+</resources>

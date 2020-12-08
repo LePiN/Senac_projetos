@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Hello</title>
+		<!-- Importe o CSS do Bootstrap aqui -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		</link>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:commandButton value="Chamar hello()" 
+							 action="#{helloBean.hello()}"
+							 styleClass="btn btn-danger"/>
+		</h:form>
+					 						 	
+		<h:outputText value="Mensagem: #{helloBean.mensagem}"/>
+	</h:body>	
+</html>

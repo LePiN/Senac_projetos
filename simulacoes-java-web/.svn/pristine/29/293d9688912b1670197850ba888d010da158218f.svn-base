@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta charset="UTF-8"/>
+		<title>Aula 07 - Exemplo 04</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+	</h:head>
+	<h:body>
+		<f:view>
+			Tabela de trabalhadores cadastrados:
+			<h:dataTable value="#{exemplo04Controller.trabalhadores}" 
+						 var="trabalhador"
+						 border="1">
+			   <h:column>    				
+			      <f:facet name="header">Nome</f:facet>    				
+			      #{trabalhador.nome}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Profissão</f:facet>    				
+			      #{trabalhador.profissao}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Sexo</f:facet>    				
+			      #{trabalhador.sexo}
+			   </h:column>
+			</h:dataTable>
+			<h:form>
+				<h:commandButton action="#{exemplo04Controller.voltar()}" value="Novo cadastro"/>
+			</h:form>
+		</f:view>
+	</h:body>
+</html>

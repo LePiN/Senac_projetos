@@ -1,0 +1,178 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Dashboard</h1>
+			</div>
+
+			<!-- card imagem -->
+			<div class="ui-g-12">
+				<div class="dash-admin-img">
+					<!-- url("#{resource['omega-layout:images/favorite-mark-off.svg']}"); -->
+					<div class="img"></div>
+				</div>
+			</div>
+			<!-- /.card imagem -->
+			
+			<ui:fragment
+				rendered="#{userController.permission(['ADMIN'])}">
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-admin-cadastro"
+						value="Cadastrar Shopping"
+						outcome="/admin/store/adicionarShopping" />
+				</div>
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-admin-visualizar"
+						value="Visualizar Shoppings"
+						outcome="/admin/store/listarShoppings" />
+				</div>
+			</ui:fragment>
+			
+			<ui:fragment
+				rendered="#{userController.permission(['EMPLOYEE', 'MANAGER'])}">
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-token"
+						value="Gerar Token"
+						outcome="/admin/rating/gerarToken" />
+				</div>
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-premio"
+						value="Finalizar prêmio"
+						outcome="/admin/award/finalizar" />
+				</div>
+			</ui:fragment>
+			
+			<ui:fragment
+				rendered="#{userController.permission(['SHOPPING', 'STORE'])}">
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-avaliacao"
+						value="Ver Avaliações"
+						outcome="/admin/rating/avaliacoes" />
+				</div>
+				<div class="ui-g-6 ui-sm-12">
+					<p:button styleClass="btn-dash-admin btn-estatistica"
+						value="Ver Estatisticas"
+						outcome="/admin/statistic/relatorio" />
+				</div>
+			</ui:fragment>
+
+			<ui:fragment
+				rendered="#{userController.permission(['STORE', 'MANAGER', 'SHOPPING'])}">
+				<!-- card lohas do shopping-->
+				<div class="ui-g-6 ui-sm-12">
+					<div class="card card-tipo1 dash-admin-cadastro">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Atalhos Cadastros</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<ui:fragment
+									rendered="#{userController.permission(['STORE', 'MANAGER', 'SHOPPING'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-cadastro"
+											value="Cadastrar funcionario"
+											outcome="/admin/employee/adicionarFuncionario" />
+									</div>
+								</ui:fragment>
+								<ui:fragment
+									rendered="#{userController.permission(['SHOPPING'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-cadastro"
+											value="Cadastrar Loja" outcome="/admin/store/adicionarLoja" />
+									</div>
+								</ui:fragment>
+								<ui:fragment
+									rendered="#{userController.permission(['STORE', 'MANAGER'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-cadastro"
+											value="Cadastrar Produto"
+											outcome="/admin/product/adicionarProduto" />
+									</div>
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-cadastro"
+											value="Cadastrar Oferta" outcome="/admin/offer/adicionar" />
+									</div>
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-cadastro"
+											value="Cadastrar Prêmio"
+											outcome="/admin/award/adicionarPremio" />
+									</div>
+								</ui:fragment>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card lojas do shopping-->
+
+				<!-- card lohas do shopping-->
+				<div class="ui-g-6 ui-sm-12">
+					<div class="card card-tipo1 dash-admin-visualizar">
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Atalhos Visualizar</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<ui:fragment
+									rendered="#{userController.permission(['STORE', 'MANAGER', 'SHOPPING'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-vesualizar"
+											value="Visualizar funcionario"
+											outcome="/admin/employee/listarFuncionarios" />
+									</div>
+								</ui:fragment>
+								<ui:fragment
+									rendered="#{userController.permission(['SHOPPING'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-vesualizar"
+											value="Visualizar Lojas" outcome="/admin/store/listarLojas" />
+									</div>
+								</ui:fragment>
+								<ui:fragment
+									rendered="#{userController.permission(['STORE', 'MANAGER'])}">
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-vesualizar"
+											value="Visualizar Produto"
+											outcome="/admin/product/listarProdutos" />
+									</div>
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-vesualizar"
+											value="Visualizar Oferta" outcome="/admin/offer/listar" />
+									</div>
+									<div class="ui-g-6 ui-sm-12">
+										<p:button styleClass="btn-dash-admin btn-vesualizar"
+											value="Visualizar Prêmio"
+											outcome="/admin/award/listarPremios" />
+									</div>
+								</ui:fragment>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</div>
+				</div>
+				<!-- /.card lojas do shopping-->
+			</ui:fragment>
+
+		</div>
+
+
+	</ui:define>
+</ui:composition>

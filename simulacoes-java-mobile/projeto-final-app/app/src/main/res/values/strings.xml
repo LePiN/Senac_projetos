@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ProjetoFinal</string>
+    <string name="main_menu_home">Home</string>
+    <string name="main_menu_avaliacoes">Avaliações</string>
+    <string name="main_menu_shopping">Shopping</string>
+    <string name="main_menu_ofertas">Ofertas</string>
+    <string name="main_menu_premios">Premios</string>
+    <string name="title_activity_navigation">navigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+    <string name="labelUsuario">Usuario</string>
+    <string name="labelSenha">Senha</string>
+    <string name="labelCadastrar">Cadastre-se</string>
+    <string name="label_pesquisar_shopping">Pesquisar Shopping</string>
+    <string name="label_shopping_favoritado">Shoppings que você favoritou</string>
+    <string name="labelR8">R8Store</string>
+    <string name="labelNãoPussuiConta">Não possui uma conta?</string>
+
+    <string name="hintSenha">Digite sua senha</string>
+    <string name="hintNomeUsuario">Digite nome do usuário</string>
+    <string name="hintNomeShopping">Digite nome do Shopping</string>
+
+    <string name="btnCadastrar">Cadastrar</string>
+    <string name="btnEntrar">Entrar</string>
+    <string name="btnBuscar">Buscar</string>
+    <string name="btnVoltar">Voltar</string>
+    <string name="btnCadastrese">Cadastre-se agora</string>
+
+
+</resources>

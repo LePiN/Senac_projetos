@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta charset="UTF-8"/>
+		<title>Aula 07 - Exemplo 02</title>
+	</h:head>
+	<h:body>
+		<f:view>
+			<h:form>
+				<!-- Dois radiobuttons para escolher entre animais ou frutas
+					 #{exemplo02.tipoSelecionado}
+					 Exemplos em: 
+					 	https://www.mkyong.com/jsf2/jsf-2-radio-buttons-example/
+					 	https://www.tutorialspoint.com/jsf/jsf_selectoneradio_tag.htm
+				 -->
+				<h:selectOneRadio value="#{exemplo02.tipoSelecionado}">
+					<f:selectItem itemValue="animal" itemLabel="Animais"/>
+					<f:selectItem itemValue="fruta" itemLabel="Frutas"/>				
+				</h:selectOneRadio>
+				
+				<!-- Um botão para submeter o form -->
+				<h:commandButton action="#{exemplo02.gerarLista()}" value="Gerar a lista"/>
+				
+			</h:form>
+			
+			<!-- Uma tabela para mostrar a lista gerada (#{exemplo02.lista})
+				Exemplo: https://www.tutorialspoint.com/jsf/jsf_display_datatable.htm
+			-->
+			<br/>
+			<br/>
+			<br/>
+			
+			<h1>Tabela gerada:</h1>
+			
+			
+			<h:dataTable value="#{exemplo02.lista}" var="lista">
+				<h:column>    				
+			      <f:facet name="header">Nome do item lista</f:facet>    				
+			      #{lista}
+			   </h:column>
+			</h:dataTable>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</f:view>
+	</h:body>
+</html>

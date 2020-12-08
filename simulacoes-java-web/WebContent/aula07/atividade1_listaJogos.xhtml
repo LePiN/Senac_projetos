@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta charset="UTF-8"/>
+		<title>Aula 07 - Exemplo 04</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+	</h:head>
+	<h:body>
+		<f:view>
+			Jogos cadastrados:
+			<h:dataTable styleClass="table table-striped table-bordered" 
+					     value="#{atividade1Bean.jogos}" 
+					     var="jogo">
+			   <h:column>    				
+			      <f:facet name="header">Nome</f:facet>    				
+			      #{jogo.nome}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Gênero</f:facet>    				
+			      #{jogo.genero}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Produtora</f:facet>    				
+			      #{jogo.produtora}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Preço</f:facet>    				
+			      <h:outputText value="#{jogo.preco}" >
+					<f:convertNumber currencyCode="BRL" type="currency" />
+				  </h:outputText>
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Ano de Lançamento</f:facet>    				
+			      #{jogo.anoLancamento}
+			   </h:column>
+			</h:dataTable>
+			<h:form>
+				<h:commandButton styleClass="btn btn-info" action="#{atividade1Bean.voltarTelaPrincipal()}" value="Voltar"/>
+			</h:form>
+		</f:view>
+	</h:body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lista de Exercícios 3 - Atividade 01</title>
+	</head>
+	<body>
+		<div id="cabecalho">Cadastro de carros (cabeçalho)</div> 
+		 
+		<form action="/DW20172/salvarCarros" method="POST">
+			<div id="marca1">
+				<fieldset>
+					<legend>Marca 1:</legend>
+					<!-- O atributo name vai representar o item selecionado ("radiogroup") -->
+					<input type="radio" name="marca" value="audi"/>Audi
+					<input type="radio" name="marca" value="fiat"/>Fiat
+					<input type="radio" name="marca" value="vw"/>Volkswagen
+					
+					<label>Modelo:</label>
+					<input type="text" name="modelo1"/>
+				</fieldset>
+			</div>
+			<div id="marca2">
+				<fieldset>
+					<legend>Marca 2:</legend>
+					<select name="marca">
+						<option value="audi">Audi</option>
+						<option value="fiat">Fiat</option>
+						<option value="vw">Volkswagen</option>
+					</select>
+				
+					<label>Modelo:</label>
+					<input type="text" name="modelo2"/>
+				</fieldset>
+			</div>
+			<!-- Tag para quebra de linhas -->
+			<div id="divSalvar1">
+				<input type="submit" value="Salvar">
+			</div>
+		</form>
+		
+		<div id="rodape">Rodapé: Contato: vilmar.junior@edu.sc.senac.br</div>
+	</body>
+</html>

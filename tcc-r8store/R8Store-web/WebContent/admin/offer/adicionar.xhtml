@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{offerController.createAddOfferPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Adicionar nova Oferta</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form enctype="multipart/form-data" styleClass="adicionar-produto">
+						<!-- form -->
+						
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Informações da Oferta</h2>
+								</div>
+							</div>
+						</div>
+						
+						<!-- /.header-card -->
+						<div class="body-card">
+							
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12 data-limite">
+									<p:inputText placeholder="Titulo do produto"
+										value="#{offerController.offer.title}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{offerController.errors['title']}"
+											rendered="#{offerController.errors['title'] != null}" />
+									</div>
+								</div>
+								<div class="ui-g-6 ui-sm-12 data-limite">
+									<p:calendar placeholder="Data limite"
+										value="#{offerController.offer.date}" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{offerController.errors['date']}"
+											rendered="#{offerController.errors['date'] != null}" />
+									</div>
+								</div>
+								<div class="ui-g-6 ui-sm-12">
+									<p:inputTextarea placeholder="Descrição da oferta" rows="5"
+										cols="30" counter="display" maxlength="250"
+										counterTemplate="{0} caracteres restantes."
+										value="#{offerController.offer.description}"
+										autoResize="false" styleClass="inputs-tipo1 text-area" />
+									<h:outputText id="display" styleClass="text-caracteres"/>
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{offerController.errors['description']}"
+											rendered="#{offerController.errors['description'] != null}" />
+									</div>
+								</div>
+								
+								<div class="ui-g-6 ui-sm-12">
+									<h:outputLabel value="Desconto da oferta: "/>	
+									<p:inputNumber id="Input7" value="#{offerController.offer.discount}" symbol="%"  
+													placeholder="Desconto da oferta"
+					                               symbolPosition="s" emptyValue="sign" minValue="0" maxValue="95"
+					                               styleClass="input-number"/>					                                
+									<div class="box-label-errors">
+										<h:outputLabel value="#{offerController.errors['discount']}"
+											rendered="#{offerController.errors['discount'] != null}" />
+									</div>	
+									
+									<p:selectOneMenu id="product"
+										value="#{offerController.offer.product}"
+										converter="omnifaces.SelectItemsConverter" styleClass="inputs-select">
+										<f:selectItem itemLabel="Escolha o produto"
+											noSelectionOption="true" />
+										<f:selectItems value="#{offerController.products}"
+											var="entity" itemLabel="#{entity.name}"
+											itemValue="#{entity}" />
+									</p:selectOneMenu>
+									<div class="box-label-errors">
+										<h:outputLabel value="#{offerController.errors['product']}"
+											rendered="#{offerController.errors['product'] != null}" />
+									</div>									
+								</div>
+
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="div-btn">
+								<p:commandButton
+									styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+									value="Adicionar Oferta" update="message"
+									actionListener="#{offerController.registerAction}"
+									ajax="false" />
+								<p:button styleClass="btn-card-tipo1 btn-card-cancel ui-sm-12"
+									value="Cancelar" outcome="/admin/offer/listar" />
+							</div>
+						</div>
+
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

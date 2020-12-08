@@ -1,0 +1,25 @@
+package br.sc.senac.revisao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import br.sc.senac.entidades.Endereco;
+import br.sc.senac.perisistencia.EnderecoDAO;
+
+@ManagedBean(name = "listagem")
+@SessionScoped
+public class Listagem {
+	
+	private EnderecoDAO endao;
+	
+	public List<Endereco> preencherTabela(){
+		List<Endereco> lista = new ArrayList<Endereco>();
+		//lista = (ArrayList<Endereco>) endao.obterEnderecos();
+		Endereco end = new Endereco("Piroca", 40, "Murcha");
+		lista.add(end);
+		return lista;
+	}
+	
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="br.com.senac.leandro.minhasnotasapp.PrincipalActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_dados_disciplina"
+        android:id="@+id/btDisciplina"
+        android:layout_marginBottom="12dp"
+        android:onClick="direcionarTela"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_dados_avaliacao1"
+        android:id="@+id/btAvaliacao1"
+        android:layout_marginBottom="12dp"
+        android:onClick="direcionarTela"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_dados_avaliacao2"
+        android:id="@+id/btAvaliacao2"
+        android:layout_marginBottom="12dp"
+        android:onClick="direcionarTela"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_enviar_dados"
+        android:id="@+id/btEnviarDados"
+        android:layout_marginBottom="12dp"
+        android:onClick="direcionarTela"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_fechar"
+        android:id="@+id/btFechar"
+        android:layout_marginBottom="12dp"
+        android:onClick="direcionarTela"/>
+
+</LinearLayout>

@@ -1,0 +1,212 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{awardController.createListAwardPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Prêmios</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form id="form">
+						<!-- form -->
+						<div class="header-card btn-header">
+							<div class="ui-g">
+								<div class="ui-g-10 ui-sm-12 ui-md-6 ui-lg-10">
+									<h2>Prêmios cadastrados</h2>
+								</div>
+								<div class="ui-g-2 ui-sm-12 ui-md-6 ui-lg-2 div-btn">
+									<p:button styleClass="btn-card-tipo2 btn-card-add ui-sm-12"
+										value="Adicionar Prêmios"
+										outcome="/admin/award/adicionarPremio" />
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:dataTable id="awards" var="award"
+										value="#{awardController.awards}" reflow="true"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+		                								{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="5,10,15">
+
+										<p:column headerText="Nome">
+											<h:outputText value="#{award.name}" />
+										</p:column>
+
+										<p:column headerText="Descrição">
+											<h:outputText value="#{award.description}" />
+										</p:column>
+
+										<p:column headerText="Custo em pontos">
+											<h:outputText value="#{award.points}" />
+										</p:column>
+
+										<p:column headerText="Quantidade">
+											<h:outputText value="#{award.quantity}" />
+										</p:column>
+
+										<p:column style="width:60px;">
+											<p:commandButton styleClass="edit-tab btn-action-tab"
+												update="awardEditDlg" oncomplete="PF('editDialog').show()"
+												icon="fa fa-pencil" title="Editar">
+												<f:setPropertyActionListener value="#{award}"
+													target="#{awardController.selectedAward}" />
+											</p:commandButton>
+											<p:commandButton id="selectButton"
+												styleClass="remov-tab btn-action-tab"
+												update=":form:awardDlg"
+												oncomplete="PF('awardDialog').show()" icon="fa fa-trash"
+												title="Remover">
+												<f:setPropertyActionListener value="#{award}"
+													target="#{awardController.selectedAward}" />
+											</p:commandButton>
+										</p:column>
+									</p:dataTable>
+
+									<p:growl id="message" showDetail="true" />
+
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+
+						<!-- DIALOG EXCLUIR -->
+						<p:dialog styleClass="remov-dialog"
+							header="Tem certeza que deseja excluir?" widgetVar="awardDialog"
+							resizable="false" id="awardDlg" showEffect="fade" modal="true">
+							<div class="ui-g">
+								<div class="ui-g-12 remov-info-div-dialog center">
+									<h:outputText styleClass="remov-label-dialog"
+										value="Nome da loja:" />
+									<h:outputText styleClass="remov-text-dialog"
+										value="#{awardController.selectedAward.name}" />
+								</div>
+								<div class="ui-g-12 center">
+									<p:commandButton id="deleteButton" styleClass="btn-sim"
+										actionListener="#{awardController.delete()}"
+										oncomplete="PF('awardDialog').hide()"
+										update=":form:awards message" value="Sim" />
+									<p:commandButton id="cancelButton" styleClass="btn-nao"
+										onclick="PF('awardDialog').hide()" value="Não" />
+								</div>
+							</div>
+						</p:dialog>
+
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card-tipo1 -->
+			</div>
+		</div>
+
+
+
+		<!-- DIALOG EDIT -->
+		<p:dialog styleClass="dialog-listar" header="Editar"
+			widgetVar="editDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" id="awardEditDlg">
+			<h:form id="editForm" enctype="multipart/form-data">
+				<div class="ui-g body-dialog-listar dialog-editar-listar">
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="nomeProduto" value="Nome do produto: " />
+							<p:inputText id="nomeProduto" placeholder="Nome do produto"
+								value="#{awardController.selectedAward.name}"
+								styleClass="inputs-tipo1" />
+							<div class="box-label-errors">
+								<h:outputLabel for="nomeProduto"
+									value="#{awardController.errors['name']}"
+									rendered="#{awardController.errors['name'] != null}" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="descricaoProduto"
+								value="Descrição do produto: " />
+							<p:inputTextarea placeholder="Descrição do Produto" rows="5"
+								id="descricaoProduto" cols="30" counter="display"
+								maxlength="250" counterTemplate="{0} caracteres restantes."
+								value="#{awardController.selectedAward.description}"
+								autoResize="false" styleClass="inputs-tipo1 text-area" />
+							<h:outputText id="display" styleClass="text-caracteres" />
+							<div class="box-label-errors">
+								<h:outputLabel for="descricaoProduto"
+									value="#{awardController.errors['description']}"
+									rendered="#{awardController.errors['description'] != null}" />
+							</div>
+						</div>
+
+					</div>
+
+					<div class="ui-g-6 ui-sm-12">
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="quant" value="Quantidade: " />
+							<p:inputNumber id="quant" placeholder="Qauntidade"
+								value="#{awardController.selectedAward.quantity}"
+								styleClass="input-number" />
+							<div class="box-label-errors">
+								<h:outputLabel for="quant"
+									value="#{awardController.errors['quantity']}"
+									rendered="#{awardController.errors['quantity'] != null}" />
+							</div>
+
+						</div>
+						<div class="ui-g-6 ui-sm-12 ui-md-6 group-input">
+							<h:outputLabel for="pontos" value="Pontos: " />
+							<p:inputNumber id="pontos" placeholder="Desconto da Oferta"
+								value="#{awardController.selectedAward.points}"
+								styleClass="input-number" />
+							<div class="box-label-errors">
+								<h:outputLabel for="pontos"
+									value="#{awardController.errors['points']}"
+									rendered="#{awardController.errors['points'] != null}" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<h:outputLabel for="dtLimite" value="Data limite do produto: " />
+							<p:calendar id="dtLimite" placeholder="Data limite"
+								value="#{awardController.selectedAward.date}" />
+							<div class="box-label-errors">
+								<h:outputLabel for="pontos"
+									value="#{awardController.errors['date']}"
+									rendered="#{awardController.errors['date'] != null}" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-sm-12 ui-md-12 group-input">
+							<p:fileUpload label="Imagem do Produto"
+								value="#{awardController.file}" mode="simple"
+								skinSimple="true" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="ui-g-12 footer-dialog-listar">
+					<p:commandButton id="deleteEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-add ui-sm-12"
+						actionListener="#{awardController.update()}"
+						update=":form:awards :form:message editForm" ajax="false" value="Alterar" />
+					<p:commandButton id="cancelEditButton"
+						styleClass="btn-dialog-listar btn-card-tipo1 btn-card-cancel ui-sm-12"
+						onclick="PF('editDialog').hide()" value="Cancelar" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+
+	</ui:define>
+
+</ui:composition>

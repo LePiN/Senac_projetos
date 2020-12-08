@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html 
+xmlns:p="http://primefaces.prime.com.tr/ui" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Consulta Endereços</title>
+	</head>
+	<body>
+	
+		<h1>LISTA ENDEREÇOS</h1>
+		
+		<p:dataTable var="endereco" value="#{consultaEnderecos.enderecos}">
+		
+			<p:column headerText="Rua">			
+				<h:outputText value="#{endereco.rua}"/>
+			</p:column>
+			
+			<p:column headerText="Número">
+				<h:outputText value="#{endereco.numero}"/>
+			</p:column>
+			
+			<p:column headerText="Bairro">
+				<h:outputText value="#{endereco.bairro}"/>
+			</p:column>
+			
+			<p:button outcome="" value="Editar">
+				<f:param name="edicao" value=""></f:param>
+			</p:button>
+			
+			<p:button outcome="" value="Excluir">
+				<f:param name="exclusão" value=""></f:param>
+			</p:button>
+			
+		</p:dataTable>
+		
+	</body>
+</html>

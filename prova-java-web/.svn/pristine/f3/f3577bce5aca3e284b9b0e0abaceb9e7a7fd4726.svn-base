@@ -1,0 +1,12 @@
+$(document).ready(function(){
+	
+	$("#salvar").click(function(){
+		
+		if($("#txNome").val()){
+			$("#txNome").css({"color":"blue", "background-color":"gray"})
+		}else{
+			alert("Campo Obrigatório! Preencha o nome.")
+		}
+	});
+	
+});

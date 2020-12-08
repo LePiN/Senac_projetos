@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Aula 04 - Exemplo 1</title>
+	</head>
+	<body>
+		<!-- Chamar na action a URL do servlet
+			 Não esquecer de colocar o contexto da aplicação antes -->
+		<form action="/DW20172/URLMeuPrimeiroServlet" method="GET">
+			<button type="submit">Chamar GET</button>
+		</form>
+		<form action="/DW20172/URLMeuPrimeiroServlet" method="POST">
+			<button type="submit">Chamar POST</button>
+		</form>
+		
+		<form action="/DW20172/exemplo2" method="GET">
+			<button type="submit">Chamar Servlet 2 (com anotação)</button>
+		</form>
+	</body>
+</html>

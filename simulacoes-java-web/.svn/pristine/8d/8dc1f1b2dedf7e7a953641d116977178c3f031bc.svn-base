@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.sc.senac.dw</groupId>
+	<artifactId>DW20172</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>DW20172</name>
+
+	<!-- PROPERTIES: chaves para representar os números de versão de cada dependência 
+		Obs.: não é obrigatório, cada dependência pode ter diretamente o seu número de versão-->
+	<properties>
+		<java.version>1.7</java.version>
+		<maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+		<maven.war.plugin.version>2.6</maven.war.plugin.version>
+		<mysql.driver.version>5.1.6</mysql.driver.version>
+		<javax.servlet.version>3.0.1</javax.servlet.version>
+		<jstl.version>1.2</jstl.version>
+		
+		<jsf.impl.version>2.2.9</jsf.impl.version>
+		<jsf.api.version>2.2.9</jsf.api.version>
+	</properties>
+
+	<!-- DEPENDÊNCIAS -->
+	<dependencies>
+		<!-- DRIVER MYSQL -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>${mysql.driver.version}</version>
+		</dependency>
+	
+		<!-- JAVAX SERVLET -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+		</dependency>
+		
+		<!-- JSTL (biblioteca de componentes para JSP) -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- JSF -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>${jsf.impl.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<finalName>DW20172</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.plugin.version}</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warName>DW20172</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

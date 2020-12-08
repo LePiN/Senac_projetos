@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		  xmlns:ui="http://java.sun.com/jsf/facelets"
+	      xmlns:h="http://java.sun.com/jsf/html"
+	      xmlns:f="http://java.sun.com/jsf/core">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Aula 07 - Exemplo 4</title>
+	</head>
+	<body>
+		<h:form>
+			<h:outputLabel>Selecione:</h:outputLabel>
+			<h:selectOneMenu styleClass="btn btn-warning" 
+				 			 value="#{atividade1Bean.tipoSelecionado}">
+				<f:selectItem itemValue = "c" itemLabel="Consoles" /> 
+	   			<f:selectItem itemValue = "j" itemLabel="Jogos" /> 
+			</h:selectOneMenu>
+			<h:commandButton value="Gerar lista" action="#{atividade1Bean.gerar()}"></h:commandButton>
+		</h:form>
+	</body>
+</html>

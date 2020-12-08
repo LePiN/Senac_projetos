@@ -1,0 +1,170 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{storeController.createAddStorePage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Adicionar nova Loja</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form enctype="multipart/form-data" styleClass="adicionar-loja">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Informações da Loja</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputText placeholder="Nome da loja (fantasia)"
+										value="#{storeController.store.name}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['name']}"
+											rendered="#{storeController.errors['name'] != null}" />
+									</div>
+									<div class="ui-g-6 inscricao">
+										<p:inputMask placeholder="Inscricao Estadual"
+											value="#{storeController.store.inscricaoEstadual}"
+											mask="999.999.999.999" styleClass="inputs-tipo1" />
+										<div class="box-label-errors">
+											<h:outputLabel class="label-errors"
+												value="#{storeController.errors['inscricao']}"
+												rendered="#{storeController.errors['inscricao'] != null}" />
+											<h:outputLabel class="label-errors"
+												value="#{storeController.errors['inscricaoExists']}"
+												rendered="#{storeController.errors['inscricaoExists'] != null}" />
+										</div>
+									</div>
+									<div class="ui-g-6 cnpj">
+										<p:inputMask placeholder="CNPJ"
+											value="#{storeController.store.cnpj}"
+											mask="99.999.999/9999-99" styleClass="inputs-tipo1" />
+										<div class="box-label-errors">
+											<h:outputLabel class="label-errors"
+												value="#{storeController.errors['cnpj']}"
+												rendered="#{storeController.errors['cnpj'] != null}" />
+											<h:outputLabel class="label-errors"
+												value="#{storeController.errors['cnpjExists']}"
+												rendered="#{storeController.errors['cnpjExists'] != null}" />
+										</div>
+									</div>
+
+									<p:inputText placeholder="Email"
+										value="#{storeController.store.email}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['email']}"
+											rendered="#{storeController.errors['email'] != null}" />
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['emailExists']}"
+											rendered="#{storeController.errors['emailExists'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="Telefone"
+										value="#{storeController.store.tel}" mask="(99) 9999-9999"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors"></div>
+									<p:inputMask placeholder="Celular"
+										value="#{storeController.store.cel}" mask="(99) 9999-9999"
+										styleClass="inputs-tipo1" />
+									
+									<p:inputText placeholder="Local no shopping"
+										value="#{storeController.store.localAddress}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['localAddress']}"
+											rendered="#{storeController.errors['localAddress'] != null}" />
+									</div>
+									
+									<p:inputTextarea placeholder="Descrição da loja" rows="5"
+										cols="30" counter="display" maxlength="250"
+										counterTemplate="{0} caracteres restantes."
+										value="#{storeController.store.description}"
+										autoResize="false" styleClass="inputs-tipo1 text-area" />
+									<h:outputText id="display" styleClass="text-caracteres"/>
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{storeController.errors['description']}"
+											rendered="#{storeController.errors['description'] != null}" />
+									</div>
+								</div>
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputText placeholder="Nome do usuario"
+										value="#{storeController.user.login}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['login']}"
+											rendered="#{storeController.errors['login'] != null}" />
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['userExists']}"
+											rendered="#{storeController.errors['userExists'] != null}" />
+									</div>
+
+									<p:password placeholder="Senha"
+										value="#{storeController.user.password}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['password']}"
+											rendered="#{storeController.errors['password'] != null}" />
+									</div>
+
+									<p:password placeholder="Confirme sua senha"
+										value="#{storeController.user.confPassword}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel class="label-errors"
+											value="#{storeController.errors['confirmation']}"
+											rendered="#{storeController.errors['confirmation'] != null}" />
+									</div>
+
+									<p:fileUpload styleClass="btn-upload"
+										value="#{storeController.file}" label="Imagem da logo" mode="simple"
+										skinSimple="true" />
+
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="div-btn">
+								<p:commandButton
+									styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+									value="Adicionar Loja" update="message"
+									actionListener="#{storeController.registerStore}" ajax="false" />
+								<p:button styleClass="btn-card-tipo1 btn-card-cancel ui-sm-12"
+									value="Cancelar" outcome="/admin/store/listarLojas" />
+							</div>
+						</div>
+						
+						<!-- /.footer-card -->
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

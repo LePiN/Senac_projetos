@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Aula 10 - Exemplo de Cookies (tela 1)</title>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+		
+		<!-- Inclui uma versão do jQuery via CDN -->		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		
+		<!-- Biblioteca de cookies -->
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+		
+		<!-- Inclui o javascript com as funções para o exercício -->
+		<script src="js/exemploCookies.js"></script>
+	</head>
+	<body>
+		<form>
+			<div class="form-group">
+				<label for="nome">Informe o nome:</label>
+  				<input type="text" class="form-control" id="nmPessoa">
+			</div>
+			
+			<button class="btn btn-info" type="button" id="btnSalvar">Salvar nome e redirecionar</button>
+		</form>
+	</body>
+</html>

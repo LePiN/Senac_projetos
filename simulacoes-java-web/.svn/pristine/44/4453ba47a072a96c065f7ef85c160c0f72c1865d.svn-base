@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Cadastro de montadoras</title>
+	</head>
+	<body>
+		<form method="POST">
+			<label>Nome:</label>
+			<input type="text" name="nome">
+			
+			<label>País:</label>
+			<input type="text" name="pais">
+			
+			<button type="submit" 
+			        formaction="/DW20172/controllerCarros?acao=inserirMontadora">Salvar</button>
+			
+			<br>
+			<br>
+			<label>Id (para alteração ou exclusão):</label>
+			<input type="text" name="id">
+			<button type="submit"
+				    formaction="/DW20172/controllerCarros?acao=alterarMontadora">Alterar</button>
+				    
+			<button type="submit"
+					formaction="/DW20172/controllerCarros?acao=excluirMontadora">Excluir</button>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Aula 03 - Exemplo 5</title>
+		
+		<!-- Importações do Materialize -->
+		<!-- Compiled and minified CSS -->
+	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+	
+		<!-- Importação de jQuery (biblioteca javascript) -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	  	<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+		
+		<!--Import Google Icon Font-->
+     	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     	
+     	<!-- Chama jQuery para iniciar o componente 'select' (combobox) 
+     		 Referência: http://materializecss.com/forms.html#select-initialization -->
+     	<script type="text/javascript">
+     		//Código em jQuery, futuramente vamos mexer mais
+			$(document).ready(function() {
+     	    	$('select').material_select();
+     	 	});
+     	</script>
+	</head>
+ 	<body>
+		<header>
+			<div class="page-header orange">
+			    <div class="col s12 l12 s12">
+                <h5 class="white-text">Exemplo 5: Formulário com Materialize</h5>
+              </div>
+			</div>
+		</header>
+		<!-- Usar os componentes do Materialize 
+			Referência:
+			http://materializecss.com/forms.html
+			-->
+		<div class="row">
+			<form action="" class="col s12 m12 l12">
+				<!-- Componente para substituir o fieldset -->
+				<div class="card amber lighten-4">
+					<!-- Adiciona um ícone no card -->
+					<i class="material-icons prefix">android</i>
+					<span class="card-title">Informações pessoais:</span>
+				</div>
+				
+				<div class="row">
+	        		<div class="input-field col s6 m12 l6">
+						<input class="validate" type="text" id="nome" name="nome" required> 
+						<label for="nome">Nome</label>
+					</div>
+					<div class="input-field col s6 m12 l6">
+						<label for="idade">Idade:</label>
+						<input type="number" id="idade" name="idade" min="0" required>
+					</div>
+				</div>
+					
+				<fieldset>
+					<legend>Endereço:</legend>
+					<label for="rua">Rua</label><br>
+					<input type="text" id="rua" name="rua" required><br>
+					<label for="cidade">Cidade</label><br>
+					<div class="input-field col s12">
+						<select name="cidade" id="cidade">
+							<optgroup label="Santa Catarina">
+								<option value="florianopolis">Florianópolis</option>
+								<option value="blumenau" selected>Blumenau</option>
+							</optgroup>
+							<optgroup label="Rio Grande do Sul">
+								<option value="portoalegre">Porto Alegre</option>
+								<option value="caxiasdosul">Caxias do Sul</option>
+							</optgroup>
+						</select>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Descrição</legend>
+					<textarea id="descricao" name="descricao" rows="4" cols="50" placeholder="Descreva aqui seu texto..."></textarea><br>
+				</fieldset>
+				<br><br>
+				<button class="btn" type="button" onclick="alert('Teste botão')">Botão</button>
+				<input type="submit" value="Enviar formulário">
+			</form>
+		</div>
+		<footer>
+			<div class="page-footer light-blue darken-4">
+			    <div class="col s12 l12 s12">
+                	<h5 class="white-text">Desenvolvimento Web 2017.2</h5>
+            	</div>
+				<div class="footer-copyright light-blue darken-4">
+					© 2017 Senac SC
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

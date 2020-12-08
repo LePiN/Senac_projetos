@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AppBoletim</string>
+    <string name="label_nome_aluno">Nome do Aluno</string>
+    <string name="hint_nome_aluno">Digite o nome do aluno</string>
+    <string name="label_nota1">Nota 01</string>
+    <string name="label_nota2">Nota 02</string>
+    <string name="hint_nota1">Digite a nota 01</string>
+    <string name="hint_nota2">Digite a nota 02</string>
+    <string name="calcular">Calcular</string>
+    <string name="limpar">Limpar</string>
+    <string name="enviar">Enviar</string>
+    <string name="label_situacao">Situação:</string>
+    <string name="label_aprovado">APROVADO</string>
+    <string name="label_reprovado">REPROVADO</string>
+    <string name="label_media">Média:</string>
+    <string name="label_aluno">Aluno:</string>
+</resources>

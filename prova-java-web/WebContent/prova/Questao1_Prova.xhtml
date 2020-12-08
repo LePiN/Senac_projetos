@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Consultar Carros com Filtro</title>
+	</h:head>
+	<h:body>
+		<h1>CONSULTA CARROS</h1>
+		
+		<h:form id="formulario">
+					
+			<p:fieldset legend="Filtro" style="margin-bottom:20px">
+				<div>
+					<p:outputLabel for="txAnoInicial">Ano Inicial: </p:outputLabel>
+					<p:inputText type="number" id="txAnoInicial" value="#{listarCarrosControle.filtro.anoInicial}"></p:inputText>
+					
+					<p:outputLabel for="txAnoFinal">Ano Final: </p:outputLabel>
+					<p:inputText type="number" id="txAnoFinal" value="#{listarCarrosControle.filtro.anoFinal}"></p:inputText>
+				</div>
+			
+				<div>
+					<p:outputLabel for="txValorInicial">Valor Inicial: </p:outputLabel>
+					<p:inputText type="number" id="txValorInicial" value="#{listarCarrosControle.filtro.valorInicial}"></p:inputText>
+				
+					<p:outputLabel for="txValorFinal">Ano Final: </p:outputLabel>
+					<p:inputText type="number" id="txValorFinal" value="#{listarCarrosControle.filtro.valorFinal}" ></p:inputText>
+				</div>
+				
+				<div>
+					<p:outputLabel for="txMontadora">Montadora: </p:outputLabel>
+					<p:inputText type="text" id="txMontadora" value="#{listarCarrosControle.filtro.nomeMontadora}"></p:inputText>
+				
+					<p:outputLabel for="txModelo">Modelo: </p:outputLabel>
+					<p:inputText type="text" id="txModelo" value="#{listarCarrosControle.filtro.modelo}"></p:inputText>
+				</div>			
+							
+			</p:fieldset>
+			
+			<p:commandButton value="Consultar" id="btnConsulta" update="formulario" actionListener="#{listarCarrosControle.preencherTabela()}" styleClass="ui-priority-primary" />
+			
+			<p:commandButton action="#{listarCarrosControle.limparConsulta()}" value="Limpar" process="@this" update="formulario" resetValues="true" />									
+							
+			<p:dataTable id="tabela" var="carro" value="#{listarCarrosControle.carros}">
+					
+				<p:column headerText="Modelo">			
+					<h:outputText value="#{carro.modelo}"/>
+				</p:column>
+						
+				<p:column headerText="Montadora">
+					<h:outputText value="#{carro.montadora.nome}"/>
+				</p:column>
+						
+				<p:column headerText="Ano">
+					<h:outputText value="#{carro.ano}"/>
+				</p:column>
+					
+				<p:column headerText="Valor">
+					<h:outputText value="#{carro.valor}"/>
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
+	</h:body>
+</html>

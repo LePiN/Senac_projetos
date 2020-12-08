@@ -1,0 +1,11 @@
+INSERT INTO Endereco(rua, numero, bairro) VALUES('Rua das Preguicas', 30, 'Sul');
+INSERT INTO Endereco(rua, numero, bairro) VALUES('Rua dos Coalas', 67, 'Norte');
+INSERT INTO Endereco(rua, numero, bairro) VALUES('Rua dos Suricatos', 99, 'Centro');
+INSERT INTO Endereco(rua, numero, bairro) VALUES('Rua dos Vombates', 22, 'Leste');
+INSERT INTO Endereco(rua, numero, bairro) VALUES('Rua das Capivaras', 81, 'Oeste');
+
+INSERT INTO Pessoa(nome, sobrenome, cpf, idEndereco) VALUES('Matheus','Lima', '11111111111', 1);
+INSERT INTO Pessoa(nome, sobrenome, cpf, idEndereco) VALUES('Gustavo','Schneider', '22222222222', 2);
+INSERT INTO Pessoa(nome, sobrenome, cpf, idEndereco) VALUES('Lucas','De Martino', '33333333333', 3);
+INSERT INTO Pessoa(nome, sobrenome, cpf, idEndereco) VALUES('Gabriel','Morfim', '44444444444', 4);
+INSERT INTO Pessoa(nome, sobrenome, cpf, idEndereco) VALUES('Augusto','Ferronato', '555555555', 5);

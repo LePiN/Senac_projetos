@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MediaDisciplinasApp</string>
+    <string name="label_disciplina01">Disciplina 01</string>
+    <string name="label_disciplina02">Disciplina 02</string>
+    <string name="hint_disciplinas">Digite o nome da disciplina</string>
+    <string name="label_nota01">Nota 01</string>
+    <string name="label_nota02">Nota 02</string>
+    <string name="label_nota03">Nota 03</string>
+    <string name="label_proximo">Próximo</string>
+    <string name="label_media">Média</string>
+    <string name="label_situacao">Situação</string>
+    <string name="label_media_geral">Média Geral</string>
+    <string name="label_situacao_geral">Situação Geral</string>
+    <string name="label_retornar">Retornar</string>
+    <string name="tx_aprovado">Aprovado</string>
+    <string name="tx_reprovado">Reprovado</string>
+    <string name="label_resultado_final">Resultado Final</string>
+
+</resources>

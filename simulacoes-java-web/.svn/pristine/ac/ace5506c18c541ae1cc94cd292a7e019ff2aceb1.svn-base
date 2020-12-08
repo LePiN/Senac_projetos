@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta charset="UTF-8"/>
+		<title>Aula 07 Exemplo 3</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+	</h:head>
+	<h:body>
+		<f:view>
+			<h:form>
+				<!-- Dois radiobuttons para escolher entre animais ou frutas
+					 #{atividade02.tipoSelecionado}
+					 Exemplos em: 
+					 	https://www.mkyong.com/jsf2/jsf-2-radio-buttons-example/
+					 	https://www.tutorialspoint.com/jsf/jsf_selectoneradio_tag.htm
+				 -->
+				<h:selectOneRadio value="#{meuBeanExemplo03.tipoSelecionado}">
+					<f:selectItem itemValue="animal" itemLabel="Animais"/>
+					<f:selectItem itemValue="fruta" itemLabel="Frutas"/>				
+				</h:selectOneRadio>
+				
+				<!-- Um botão para submeter o form -->
+				<h:commandButton action="#{meuBeanExemplo03.gerarLista()}" value="Gerar lista"/>
+				
+			</h:form>
+			
+			<!-- Uma tabela para mostrar a lista gerada (#{atividade02.lista})
+				Exemplo: https://www.tutorialspoint.com/jsf/jsf_display_datatable.htm
+				
+				Mostrar todos os atributos (de animais ou frutas: atenção com os nomes)
+				
+				TODO implementar aqui
+			-->
+			Tabela gerada:
+			<h:dataTable value="#{meuBeanExemplo03.animais}" 
+						 var="animal"
+						 border="1">
+				<h:column>    				
+			      <f:facet name="header">Nome</f:facet>    				
+			      #{animal.nome}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Peso</f:facet>    				
+			      #{animal.peso}
+			   </h:column>
+			   <h:column>    				
+			      <f:facet name="header">Tipo</f:facet>    				
+			      #{animal.tipo}
+			   </h:column>
+			</h:dataTable>
+			<h:dataTable value="#{meuBeanExemplo03.frutas}" 
+						 var="fruta"
+						 border="1">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>    				
+				      #{fruta.nome}
+				   </h:column>
+				<h:column>
+					<f:facet name="header">Peso</f:facet>    				
+				      #{fruta.peso}
+				   </h:column>
+				<h:column>
+					<f:facet name="header">Sabor</f:facet>    				
+				      #{fruta.sabor}
+				   </h:column>
+			</h:dataTable>
+		</f:view>
+	</h:body>
+</html>

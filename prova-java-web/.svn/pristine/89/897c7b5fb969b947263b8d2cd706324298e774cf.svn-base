@@ -1,0 +1,70 @@
+$(document).ready(function(){
+	
+	var mensagemErro ="Entrada errada!\n";
+	
+	var verificarNome = function(){
+		
+		if($("#txNome").val()){
+			$("#txNome").css({"color":"blue", "background-color":"gray"})
+		}else{
+			alert("Campo Obrigatório! Preencha o nome.")
+		}	
+	}
+	
+	var verificarTamanhoData = function(){
+		
+		if(($("#txDtNascimento").val().length)!=10){
+			
+			mensagemErro += "- Número de digítos deve ser igual a 10.\n";
+			//alert("Entrada errada! Número de digítos deve ser igual a 10.");
+			
+			return true;
+		}else{
+			return false;
+		}			
+	}
+	
+	var verificarBarras = function(){
+		
+		var partesData = $("#txDtNascimento").val().split("/");
+		
+		if(partesData.length != 2){
+			
+			mensagemErro += "- A data deve ser dividida por duas '/'.\n";
+			//alert("Entrada errada! A data deve ser dividida por duas /");
+			
+			return true;
+		} else{
+			return false;
+		}	
+	}
+	
+	var verificarMes = function(){
+		
+		var partesData = $("#txDtNascimento").val().split("/");
+		
+		if((partesData[1]<1)&&(partesData[1]>12)){
+			
+			mensagemErro += "- O mês está fora do intervalo.\n";
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	$("#salvar").click(function(){
+		
+		verificarNome();
+		var validacao1 = verificarTamanhoData();
+		var validacao2 = verificarBarras();
+		var validacao3 = verficarMes();
+		
+		if((validacao1==true)||(validacao2==true)||(validacao3==true)){
+			alert(mensagemErro);
+		}
+		
+		//mensagemErro ="Entrada errada!\n";
+		location.reload();
+	});
+	
+});

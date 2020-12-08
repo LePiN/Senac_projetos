@@ -1,0 +1,128 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{awardController.createAddAwardPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Adicionar novo prêmio</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form enctype="multipart/form-data" styleClass="adicionar-premio">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Informações do Prêmio</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12">
+									<p:inputText placeholder="Titulo do premio"
+										value="#{awardController.award.name}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{awardController.errors['name']}"
+											rendered="#{awardController.errors['name'] != null}" />
+									</div>
+									
+									<p:inputTextarea placeholder="Descrição do premio" rows="5"
+										cols="30" counter="display" maxlength="250"
+										counterTemplate="{0} caracteres restantes."
+										value="#{awardController.award.description}"
+										autoResize="false" styleClass="inputs-tipo1 text-area" />
+									<h:outputText id="display" styleClass="text-caracteres"/>
+									<div class="box-label-errors">
+										<h:outputLabel
+											value="#{awardController.errors['description']}"
+											rendered="#{awardController.errors['description'] != null}" />
+									</div>
+									<div class="ui-g-6 ui-sm-12 produto">
+										<p:selectOneMenu id="product"
+											value="#{awardController.award.product}"
+											converter="omnifaces.SelectItemsConverter" styleClass="inputs-select">
+											<f:selectItem itemLabel="Escolha o produto"
+												noSelectionOption="true" />
+											<f:selectItems value="#{awardController.products}"
+												var="entity" itemLabel="#{entity.name}"
+												itemValue="#{entity}" />
+										</p:selectOneMenu>
+											
+										<div class="box-label-errors">
+											<h:outputLabel value="#{awardController.errors['product']}"
+												rendered="#{awardController.errors['product'] != null}" />
+										</div>
+									</div>
+									<div class="ui-g-6 ui-sm-12 data-limite">
+										<p:calendar placeholder="Data limite"
+											value="#{awardController.award.date}" />
+										<div class="box-label-errors">
+											<h:outputLabel value="#{awardController.errors['date']}"
+												rendered="#{awardController.errors['date'] != null}" />
+										</div>
+									</div>
+								</div>
+								<div class="ui-g-6 ui-sm-12">
+									<h:outputLabel for="pontos" value="Pontos" />
+									<p:inputNumber id="pontos"
+										value="#{awardController.award.points}"
+										styleClass="input-number" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{awardController.errors['points']}"
+											rendered="#{awardController.errors['points'] != null}" />
+									</div>
+
+									<h:outputLabel for="quantidade" value="Quantidade" />
+									<p:inputMask id="quantidade"
+										value="#{awardController.award.quantity}" mask="9?99"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{awardController.errors['quantity']}"
+											rendered="#{awardController.errors['quantity'] != null}" />
+									</div>
+									
+									<p:fileUpload label="Imagem do Prêmio"
+										value="#{awardController.file}" mode="simple"
+										skinSimple="true" />
+									<div class="box-label-errors">
+										<h:outputLabel value="#{awardController.errors['image']}"
+											rendered="#{awardController.errors['image'] != null}" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="div-btn">
+								<p:commandButton
+									styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+									value="Adicionar Prêmio" update="message"
+									actionListener="#{awardController.registerAction}" ajax="false" />
+								<p:button styleClass="btn-card-tipo1 btn-card-cancel ui-sm-12"
+									value="Cancelar" outcome="/admin/award/listarPremios" />
+							</div>
+						</div>
+
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

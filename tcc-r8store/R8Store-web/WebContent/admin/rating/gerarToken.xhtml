@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{ratingController.createTokenPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-6">
+				<h1 class="titulo-pagina">Token</h1>
+
+				<div class="ui-g-12 card card-tipo2 card-token gerar-token">
+					<!-- card -->
+					<h:form id="form" enctype="multipart/form-data">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+									<h2>Gerar Token</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+
+						<div class="body-card">
+							<div class="box-qr-code center">
+								<div class="box-content center">
+									<div class="label-qrcode">
+										<i class="fa fa-qrcode" aria-hidden="true"></i> <label>QR
+											Code</label>
+									</div>
+
+									<p:barcode class="qr-code" value="#{ratingController.token}"
+										type="qr" />
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-12 box-input-qrcode">
+									<label>Codigo:</label>
+									<p:inputText id="token" placeholder="Nº Token"
+										value="#{ratingController.token}" styleClass="inputs-tipo1" />
+								</div>
+								<div class="ui-g-12">
+									<p:commandButton styleClass="btn-card-tipo1 btn-token"
+										value="Gerar Token" update=":form"
+										actionListener="#{ratingController.generateToken}" ajax="true" />
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

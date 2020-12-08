@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Aula 02 - Atividade 2</title>
+	</head>
+	<body>
+		<!-- Exemplo de formulário, ainda sem ação ou método HTTP associado 
+			 
+			 Referências:
+			 https://www.w3schools.com/html/html_form_input_types.asp
+		-->
+		
+		<form action="">
+			<fieldset>
+				<legend>Marca:</legend>
+				<!-- O atributo name vai representar o item selecionado ("radiogroup") -->
+				<input type="radio" name="marca" value="audi"/>Audi
+				<input type="radio" name="marca" value="fiat"/>Fiat
+				<input type="radio" name="marca" value="vw"/>Volkswagen
+				
+				<br>
+				
+				<label>Modelo:</label>
+				<input type="text" name="modelo" required/>
+				
+				<label>Ano:</label>
+				<input type="number" name="ano" required/>
+			</fieldset>
+			
+			<br>
+			<br>
+			<input type="submit" value="Salvar">
+		</form>
+	</body>
+</html>

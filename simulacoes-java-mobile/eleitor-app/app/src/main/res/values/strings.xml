@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">EleitorApp</string>
+    <string name="label_nome">Nome</string>
+    <string name="label_idade">Idade</string>
+    <string name="hint_nome">Digite seu nome</string>
+    <string name="concluir">Concluir</string>
+    <string name="pode_votar_questao">Pode votar?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="retornar">Retornar</string>
+    <string name="mostrando_informacoes">Mostrando informações</string>
+    <string name="erro_nome">Erro nome</string>
+    <string name="erro_idade">Erro idade</string>
+</resources>

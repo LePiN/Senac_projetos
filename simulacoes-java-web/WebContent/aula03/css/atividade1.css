@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* Importação de fonte */
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+fieldset{
+	/* Configure a largura dos elementos fieldset para 500px; */
+	width: 500px;
+	
+	/* Configure uma borda e uma cor de fundo para os elementos fieldset; */
+	border-color: orange;
+	background-color: #FFEECC;
+}
+
+/* Altere a fonte do texto do legend, colocar em negrito e tamanho de 18px; */
+/* Seletor por classe */
+.textoCursivo{
+	font-family: 'Dancing Script', cursive;
+	font-size: 30px;
+	color: BLUE;
+}
+
+/* Altere a fonte dos elementos required para vermelho */
+/* Seletor com wildcard (asterisco) combinado com uma propriedade (required)*/
+*[required]{
+	color: RED;
+}
+
+/* Altere a cor de fundo do primeiro input e o botão submit para preto */
+#txtModelo, #btnSalvar{
+	background-color: BLACK;
+}
+
+#btnSalvar{
+	color: CYAN;
+}

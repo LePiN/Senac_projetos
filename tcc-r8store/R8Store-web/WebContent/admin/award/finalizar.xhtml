@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{awardController.createConfirmPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Finalizar Prêmio</h1>
+			</div>
+
+			<div class="ui-g-12">
+				<!-- card -->
+				<div class="card card-tipo1 finalizar-premio">
+					<h:form id="form" enctype="multipart/form-data">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+									<h2>Código do prêmio</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+
+						<div class="body-card">
+							<div class="ui-g">
+								<div class="ui-g-12 box-token-finalizar-premio">
+									<div class="ui-g-6 ui-sm-12">
+										<p:inputText id="token" placeholder="Nº Token"
+											value="#{awardController.code}" styleClass="inputs-tipo1" />
+									</div>
+									<div class="ui-g-3 ui-sm-12">
+										<p:commandButton styleClass="btn-card-tipo1 btn-finalizar"
+											value="Procurar premio" update=":form" icon="fa fa-search"
+											actionListener="#{awardController.findCode}" ajax="true" />
+									</div>
+								</div>
+								
+								<ui:fragment
+									rendered="#{awardController.personAward.person != null}">
+									<div class="ui-g-12 main-info-finalizar-premio">
+										<h3>Informações do Prêmio</h3>
+
+										<div class="body-info-finalizar-premio">
+											<div class="ui-g-12 titulo">
+												<h4>Informações do Cliente</h4>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Nome do cliente:</label><br /> <span>
+													#{awardController.personAward.person.name} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Email do cliente:</label><br /> <span>
+													#{awardController.personAward.person.email} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Telefone do cliente:</label><br /> <span>
+													#{awardController.personAward.person.tel} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Sexo do cliente:</label><br /> <span>
+													#{awardController.personAward.person.gender} </span>
+											</div>
+											<div class="ui-g-12 titulo">
+												<h4>Informações do Prêmio</h4>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Codigo do prêmio:</label><br /> <span>
+													#{awardController.personAward.code} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Nome do prêmio:</label><br /> <span>
+													#{awardController.personAward.award.name} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Validade do prêmio:</label><br /> <span>
+													#{awardController.personAward.award.date} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Pontos necessário para adquirir o prêmio:</label><br />
+												<span> #{awardController.personAward.award.points} </span>
+											</div>
+											<div class="ui-g-12 ui-sm-12">
+												<label>Descricao do prêmio:</label><br /> <span>
+													#{awardController.personAward.award.description} </span>
+											</div>
+											<div class="ui-g-12 titulo">
+												<h4>Informações do produto do prêmio</h4>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Nome do produto:</label><br /> <span>
+													#{awardController.personAward.award.product.name} </span>
+											</div>
+											<div class="ui-g-6 ui-sm-12">
+												<label>Valor do produto:</label><br /> <span> R$
+													#{awardController.personAward.award.product.value} </span>
+											</div>
+											<div class="ui-g-12 ui-sm-12">
+												<label>Descrição do produto:</label><br /> <span>
+													#{awardController.personAward.award.product.description} </span>
+											</div>
+										</div>
+									</div>
+								</ui:fragment>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<ui:fragment
+							rendered="#{awardController.personAward.person != null}">
+							<div class="footer-card">
+								<div class="div-btn">
+									<p:commandButton
+										styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+										value="Finalizar Premio" update=":form"
+										actionListener="#{awardController.finalizeAward}" ajax="true" />
+								</div>
+							</div>
+						</ui:fragment>
+
+
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+			</div>
+			<!-- /.card -->
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

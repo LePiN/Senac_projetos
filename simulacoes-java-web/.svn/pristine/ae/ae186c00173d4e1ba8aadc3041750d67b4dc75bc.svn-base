@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* Seletores por elemento */ 
+html{
+	background-color: BLUE;
+}
+
+			
+h1,p{
+	color: yellow;
+}

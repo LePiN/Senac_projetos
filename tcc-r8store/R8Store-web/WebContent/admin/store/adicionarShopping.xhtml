@@ -1,0 +1,252 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<f:metadata>
+		<f:event listener="#{storeController.createAddShoppingPage}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<h1 class="titulo-pagina">Adicionar novo Shopping</h1>
+
+				<div class="ui-g-12 card card-tipo1">
+					<!-- card -->
+					<h:form enctype="multipart/form-data">
+						<!-- form -->
+						<div class="header-card">
+							<div class="ui-g">
+								<div class="ui-g-8 ui-sm-12 ui-md-12 ui-lg-8">
+									<h2>Informações do Shopping</h2>
+								</div>
+							</div>
+						</div>
+						<!-- /.header-card -->
+						<div class="body-card">
+							<div class="box-map">
+								<div class="map" id="map" style="margin-bottom: 10px;"></div>
+								<div class="box-label-errors">
+									<h:outputLabel for="name" class="label-errors"
+										value="#{storeController.errors['geolocation']}"
+										rendered="#{storeController.errors['geolocation'] != null}" />
+								</div>
+							</div>
+							<!-- ./box-map -->
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputText placeholder="Nome da loja (fantasia)"
+										value="#{storeController.store.name}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['name']}"
+											rendered="#{storeController.errors['name'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="Inscricao Estadual"
+										value="#{storeController.store.inscricaoEstadual}"
+										mask="999.999.999.999" styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['inscricao']}"
+											rendered="#{storeController.errors['inscricao'] != null}" />
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['inscricaoExists']}"
+											rendered="#{storeController.errors['inscricaoExists'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="CNPJ"
+										value="#{storeController.store.cnpj}"
+										mask="99.999.999/9999-99" styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['cnpj']}"
+											rendered="#{storeController.errors['cnpj'] != null}" />
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['cnpjExists']}"
+											rendered="#{storeController.errors['cnpjExists'] != null}" />
+									</div>
+
+									<p:inputText placeholder="Email"
+										value="#{storeController.store.email}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['email']}"
+											rendered="#{storeController.errors['email'] != null}" />
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['emailExists']}"
+											rendered="#{storeController.errors['emailExists'] != null}" />
+									</div>
+
+									<p:inputMask placeholder="Telefone"
+										value="#{storeController.store.tel}" mask="(99) 9999-9999"
+										styleClass="inputs-tipo1" />
+									<p:inputMask placeholder="Celular"
+										value="#{storeController.store.cel}" mask="(99) 9999-9999"
+										styleClass="inputs-tipo1" />
+								</div>
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputText placeholder="Nome do usuario"
+										value="#{storeController.user.login}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['login']}"
+											rendered="#{storeController.errors['login'] != null}" />
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['userExists']}"
+											rendered="#{storeController.errors['userExists'] != null}" />
+									</div>
+
+									<p:password placeholder="Senha"
+										value="#{storeController.user.password}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['password']}"
+											rendered="#{storeController.errors['password'] != null}" />
+									</div>
+
+									<p:password placeholder="Confirme sua senha"
+										value="#{storeController.user.confPassword}"
+										styleClass="inputs-tipo1" />
+									<div class="box-label-errors">
+										<h:outputLabel for="name" class="label-errors"
+											value="#{storeController.errors['confirmation']}"
+											rendered="#{storeController.errors['confirmation'] != null}" />
+									</div>
+
+									<p:fileUpload label="Imagem da logo"
+										value="#{storeController.file}" mode="simple"
+										skinSimple="true" />
+
+									<p:inputText id="ltd" type="hidden"
+										value="#{storeController.store.coordinateX}"
+										styleClass="coord" />
+									<p:inputText id="lng" type="hidden"
+										value="#{storeController.store.coordinateY}"
+										styleClass="coord" />
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-6 ui-sm-12 ui-md-6 ui-lg-6">
+									<p:inputMask placeholder="CEP"
+										value="#{storeController.address.zipCode}" mask="99.999-999"
+										styleClass="inputs-tipo1">
+										<p:ajax event="blur" update="rua state city bairro"
+											listener="#{storeController.onZipChange}" />
+									</p:inputMask>
+
+									<div class="box-select-adicionar ui-g-12">
+										<div class="ui-g-6 state">
+											<p:selectOneMenu id="state" value="#{storeController.state}"
+												styleClass="inputs-select"
+												converter="omnifaces.SelectItemsConverter">
+												<p:ajax listener="#{storeController.onStateChange}"
+													update="city" />
+												<f:selectItem itemLabel="Selecione o estado" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItems value="#{storeController.states}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+										<div class="ui-g-6 city">
+											<p:selectOneMenu id="city" value="#{storeController.city}"
+												styleClass="inputs-select"
+												converter="omnifaces.SelectItemsConverter">
+												<f:selectItem itemLabel="Selecione a cidade" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItems value="#{storeController.cities}"
+													var="entity" itemLabel="#{entity.name}"
+													itemValue="#{entity}" />
+											</p:selectOneMenu>
+										</div>
+									</div>
+									<p:inputText id="bairro" placeholder="Bairro"
+										value="#{storeController.address.district}"
+										styleClass="inputs-tipo1" />
+									<p:inputText id="rua" placeholder="Rua"
+										value="#{storeController.address.street}"
+										styleClass="inputs-tipo1" />
+									<p:inputText id="numero" placeholder="Número"
+										value="#{storeController.address.number}"
+										styleClass="inputs-tipo1" />
+									<p:inputText placeholder="Complemento"
+										value="#{storeController.address.complement}"
+										styleClass="inputs-tipo1" />
+								</div>
+							</div>
+						</div>
+						<!-- /.body-card -->
+						<div class="footer-card">
+							<div class="div-btn">
+								<p:commandButton
+									styleClass="btn-card-tipo1 btn-card-add ui-sm-12"
+									value="Adicionar Shopping"
+									actionListener="#{storeController.registerShopping}"
+									update="message" ajax="false" />
+								<p:button styleClass="btn-card-tipo1 btn-card-cancel ui-sm-12"
+									value="Cancelar" outcome="/admin/store/listarLojas" />
+							</div>
+						</div>
+						<!-- /.footer-card -->
+
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+					<!-- /.form -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+
+		<script>
+	      var marker;	
+	      var self = this;
+	    
+	      function initMap() {  
+	    	// Create a map object and specify the DOM element for display.
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	          center: {lat: -27.6021016, lng: -48.5582786},
+	          zoom: 12
+	        });	 
+	    	
+	        var y = document.getElementsByClassName('coord');	 
+	        if(y[0].value) {
+	        	this.marker = new google.maps.Marker({position: {lat: Number(y[0].value), lng: Number(y[1].value)}, map: map});
+	        	self.marker = marker;
+	        }
+	        
+	        google.maps.event.addListener(map, 'click', function(event, marker) {	 
+	        	if (self.marker) {
+	        		self.marker.setMap(null);
+	        	}
+	        	
+	        	if (this.marker) {
+	        		this.marker.setMap(null);
+	        	}        	
+	            this.marker = new google.maps.Marker({position: event.latLng, map: map});
+	            	            
+	            var ltd = y[0];
+	            var lng = y[1];
+	            
+	            ltd.value = event.latLng.lat();
+	            lng.value = event.latLng.lng();
+	        });
+	        			
+	      }
+	      
+	
+	    </script>
+		<script async='async' defer='defer'
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKlJmpv8hz0KMHq8yc3kaDK3RIlJ0yYmg&amp;callback=initMap"></script>
+
+	</ui:define>
+
+</ui:composition>
